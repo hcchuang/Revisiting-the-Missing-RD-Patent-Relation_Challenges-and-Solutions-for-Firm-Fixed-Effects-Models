@@ -1,5 +1,5 @@
-# Revamping Firm Fixed Effects Models with Machine Learning
-The repository provides the detailed examples and codes following the paper Chuang, H.C., Hsu, P.H., Kuan, C.M., Yang, J.C., 2022. *Revamping Firm Fixed Effects Models with Machine Learning - New Evidence from Recovering the Missing R&D-Patent Relation*. The paper is available at SSRN. https://ssrn.com/abstract=4636846
+# Limitation of Firm Fixed Effects Models and the Missing R\&D-Patent Relation: New Methods and Evidence
+The repository provides the detailed examples and codes following the paper Chuang, H.C., Hsu, P.H., Kuan, C.M., Yang, J.C., 2022. *Limitation of Firm Fixed Effects Models and the Missing R\&D-Patent Relation: New Methods and Evidence*. The paper is available at SSRN. https://ssrn.com/abstract=4636846
 
 In this set of code, we demonstrate how users can implement the following four ways for the potential bias from fixed effects regressions: 
   1. Within Between Variation: check if within-firm variation dominates between-firm variation or vice versa 
@@ -60,11 +60,11 @@ Please contact Po-Hsuan Hsu (pohsuanhsu@mx.nthu.edu.tw) or Hui-Ching Chuang (hui
 
 ## Citation
 ```
-Chuang, Hui-Ching and Hsu, Po-Hsuan and Kuan, Chung‐Ming and Yang, Jui-Chung, Revamping Firm Fixed Effects Models with Machine Learning - New Evidence from Recovering the Missing R&D-Patent Relation (June 27, 2022). Available at SSRN: https://ssrn.com/abstract=4636846 or http://dx.doi.org/10.2139/ssrn.4636846
+Chuang, Hui-Ching and Hsu, Po-Hsuan and Kuan, Chung‐Ming and Yang, Jui-Chung, Limitation of Firm Fixed Effects Models and the Missing R\&D-Patent Relation: New Methods and Evidence (June 27, 2022). Available at SSRN: https://ssrn.com/abstract=4636846 or http://dx.doi.org/10.2139/ssrn.4636846
 ```
 ```
 @article{chuang2022reexam, 
-         title={Revamping Firm Fixed Effects Models with Machine Learning - New Evidence from Recovering the Missing R&D-Patent Relation},
+         title={Limitation of Firm Fixed Effects Models and the Missing R\&D-Patent Relation: New Methods and Evidence},
          author={Chuang, Hui-Ching and Hsu, Po-Hsuan and Kuan, Chung-Ming and Yang, Jui-Chung},
          journal={Available at SSRN. https://ssrn.com/abstract=4636846},
          year={2022}
