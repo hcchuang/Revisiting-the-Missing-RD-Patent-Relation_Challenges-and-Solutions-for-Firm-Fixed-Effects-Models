@@ -7,7 +7,7 @@ In this set of code, we demonstrate how users can implement the following four w
   3. Post-regularization and DML LASSO methods (note that you may need to use STATA v17)
 
 ## Data and Code Availability:
-We have prepared the following three documents:
+We have prepared the following documents:
   1. `Replicate_code_MissingRDPatent_ML.do` contains the STATA code that produces all our results in the paper;
   2. `Replicate_data_MissingRDPatent_ML.dta` contains the dataset (in STATA format) of the randomly selected 200 firms from our full sample.
  
