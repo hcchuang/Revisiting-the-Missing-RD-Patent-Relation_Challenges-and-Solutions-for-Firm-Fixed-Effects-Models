@@ -113,45 +113,9 @@ use "F:\Dropbox\RD_PATENT_FE\MissingRDPatent_ML\Replicate_data_MissingRDPatent_M
 	 
 
 *--------------------------------------------------------------------------------------------------
-* Table 10--11: Hausman-Taylor Estimates
+* Table 10--11: Adjusted Hausman-Taylor Estimates
 	
-	* Define variables of interests (please change accordingly)
-	local innov_used "lnnpatent"
-	local rd_used "RDAT"
-	local ctrl_w "lnME RD_missing lnAge lnK2L TobinQ ROA Leverage CASHAT KZidx InstOwn oms_HHidx oms_HHidx_square"
-
-	estimates clear
-	
-    * Define the de-mean variables
-	foreach x of local ctrl_w{
-		by PERMCO: egen mean_`x' = mean(`x')
-		gen demean_`x' = `x' - mean_`x'
-		}
-		
-	* IV Fixed Effect on firm, firm and year, firm and industry-trend
-	ivreghdfe `innov_used' `rd_used' (`ctrl_w' =  demean_*), vce(cluster PERMCO) tol(1e-6) accel(sd) 
-	estimates store HT_firm
-	estadd local FirmFE "yes"
-    estadd local YearFE "no"
-    estadd local YearxIndustryFE "no"
-
-	ivreghdfe `innov_used' `rd_used' (`ctrl_w' =  demean_*), absorb(i.fyear) vce(cluster PERMCO) tol(1e-6) accel(sd)
-	estimates store HT_firm_fyear
-	estadd local FirmFE "yes"
-    estadd local YearFE "yes"
-    estadd local YearxIndustryFE "no"
-
-	
-	ivreghdfe `innov_used' `rd_used' (`ctrl_w' =  demean_*), absorb(i.fyear#i.sic3) vce(cluster PERMCO) tol(1e-6) accel(sd)
-	estimates store HT_firm_fyear2sic3
-	estadd local FirmFE "yes"
-    estadd local YearFE "yes"
-    estadd local YearxIndustryFE "yes"
-	
-	*Output the Hausman Taylor table as *.csv file 
-    esttab HT_firm HT_firm_fyear HT_firm_fyear2sic3, s(FirmFE YearFE YearxIndustryFE N) noconstant  star(* 0.10 ** 0.05 *** 0.01)  se(3) ar2 b(3) replace title("Hausman-Taylor Estimates") mtitle("HT_firm" "HT_firm_fyear" "HT_firm_trend"), using "Hausman_Taylor_Estimates.csv"	
-	
-	
+	<to-be updated>
 *--------------------------------------------------------------------------------------------------
 * Table 12--17: Post-regularization LASSO linear regression
     
