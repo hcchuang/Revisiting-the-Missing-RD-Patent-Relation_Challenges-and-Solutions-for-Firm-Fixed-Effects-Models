@@ -4,8 +4,7 @@ The repository provides the detailed examples and codes following the paper Chua
 In this set of code, we demonstrate how users can implement the following four ways for the potential bias from fixed effects regressions: 
   1. Within Between Variation: check if within-firm variation dominates between-firm variation or vice versa 
   2. Regression without firm FEs
-  3. <To be updated>
-  4. Post-regularization and DML LASSO methods (note that you may need to use STATA v17)
+  3. Post-regularization and DML LASSO methods (note that you may need to use STATA v17)
 
 ## Data and Code Availability:
 We have prepared the following three documents:
