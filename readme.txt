@@ -6,7 +6,7 @@
 * In this set of code, we demonstrate how users can implement the following four ways for the potential bias from fixed effects regressions: 
 *  (1) Within Between Variation: check if within-firm variation dominates between-firm variation or vice versa 
 *  (2) Regression without firm FEs
-*  (3) Hausman_Taylor_Estimates
+*  (3) <To be updated>
 *  (4) Post-regularization and DML LASSO methods (note that you may need to use STATA v17)
 *
 *
@@ -24,7 +24,7 @@ Data and Code Availability:
 * We have prepared the following documents:
 - "Replicate_code_MissingRDPatent_ML.do" contains the STATA code that produces all our results in the paper;
 - "Replicate_data_MissingRDPatent_ML.dta" contains the dataset (in STATA format) of the randomly selected 200 firms from our full sample.
-- "Replicate_log_MissingRDPatent_ML.sml" contains the log file for running the "Replicate_code_MissingRDPatent_ML.do" on "Replicate_data_MissingRDPatent_ML.dta".
+
 
 
 Sample Data Construction
@@ -51,7 +51,6 @@ Results for Sample Data:
 * Depends on computer capacity; we also provide results using the sample data.
 - "Within_Between_Variation.smcl" contains the log file for running the Between and Within variations of the key variables. 
 - "Fixed_Effects_Linear_Model_Estimates.csv" contains the results of the estimation for OLS with and without FEs.
-- "Hausman_Taylor_Estimates.csv" contains the results of the estimation for Hausman and Taylor estimation.
 - "Post_Regulization_LASSO_Linear_Model_Estimates.csv" contains the results of the estimation for the Post-regularization LASSO linear model.	
 - "DML_LASSO_Linear_Model_Estimates.csv" contains the results of the estimation for the double machine learning (DML) LASSO linear model.	
 - "Fixed_Effects_Poisson_Model_Estimates.csv" contains the results of the estimation for the Poisson model with and without FEs.
