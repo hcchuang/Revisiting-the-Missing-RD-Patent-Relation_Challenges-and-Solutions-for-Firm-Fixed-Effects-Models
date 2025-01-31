@@ -9,13 +9,13 @@ In this set of code, we demonstrate how users can implement the following four w
 ## Data and Code Availability:
 We have prepared the following documents:
   1. `Replicate_code_MissingRDPatent_ML.do` contains the STATA code that produces all our results in the paper;
-  2. `Replicate_data_MissingRDPatent_ML.dta` contains the dataset (in STATA format) of the randomly selected 200 firms from our full sample.
+  2. `Replicate_data_MissingRDPatent_ML.dta` contains the dataset (in STATA format) used in the paper.
  
 
 
 
 **Sample Data Construction**
-* We randomly pick up 200 firms from our sample in this replicate exercise. PERMCO here is a pseudo firm identifier for illustration purposes.
+* PERMCO here is a pseudo firm identifier for illustration purposes.
 * Variables definitions are as follows, and interested readers are referred to our paper and the original data sources to collect them.
   - patent:     Number of patent (data from USPTO PatentsView)
   - lnnpatent:  The logarithm of one plus the number of patents (data from USPTO PatentsView)
