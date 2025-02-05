@@ -35,13 +35,13 @@ We have prepared the following documents:
 **Results for Sample Data**
 * Depends on computer capacity; we also provide results and corresponding STATA log files.
   * Log files:
-    - ReplicateLog_Within_Between_Variation: contains the log file for running the Between and Within variations of the key variables.  
-    - ReplicateLog_OLS_FE_adjHT: contains the log file of the estimation for OLS with and without FEs and adjusted Hausman-Taylor.
-    - ReplicateLog_PRL_Linear: contains the log file of the estimation for the PRL linear model.	
-    - ReplicateLog_DML_Linear: contains the log file of the estimation for the DML linear model.
-    - ReplicateLog_Poisson_FE: contains the log file of the estimation for Poisso regression with and without FEs.
-    - ReplicateLog_PRL_Poisson: contains the log file of the estimation for the PRL Poisson model.
-    - ReplicateLog_DML_Poisson: contains the log file of the estimation for the DML Poisson model.
+    - ReplicateLog_Within_Between_Variation 
+    - ReplicateLog_OLS_FE_adjHT
+    - ReplicateLog_PRL_Linear
+    - ReplicateLog_DML_Linear
+    - ReplicateLog_Poisson_FE
+    - ReplicateLog_PRL_Poisson
+    - ReplicateLog_DML_Poisson
       
   * csv files:
     - RDPatentFE_FE_OLS_adjHT_estimates.csv
