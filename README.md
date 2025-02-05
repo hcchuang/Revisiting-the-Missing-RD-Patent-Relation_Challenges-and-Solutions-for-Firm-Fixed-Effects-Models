@@ -1,19 +1,17 @@
 # Limitation of Firm Fixed Effects Models and the Missing R\&D-Patent Relation: New Methods and Evidence
-The repository provides the detailed examples and codes following the paper Chuang, H.C., Hsu, P.H., Kuan, C.M., Yang, J.C., 2022. *Limitation of Firm Fixed Effects Models and the Missing R\&D-Patent Relation: New Methods and Evidence*. The paper is available at SSRN. https://ssrn.com/abstract=4636846
+The repository provides the detailed examples and codes following the paper Chuang, H.C., Hsu, P.H., Kuan, C.M., Yang, J.C., 2022. *Limitation of Firm Fixed Effects Models and the Missing R&D-Patent Relation: New Methods and Evidence*. The paper is available at SSRN. https://ssrn.com/abstract=4636846
 
 In this set of code, we demonstrate how users can implement the following four ways for the potential bias from fixed effects regressions: 
   1. Within Between Variation: check if within-firm variation dominates between-firm variation or vice versa 
-  2. Regression without firm FEs
-  3. Post-regularization and DML LASSO methods (note that you may need to use STATA v17)
+  2. Regression and Poisson regression with and without firm FEs
+  3. Adjusted Hausman-Taylor approach
+  4. Post-regularization and DML LASSO methods (note that you may need to use STATA v17)
 
 ## Data and Code Availability:
 We have prepared the following documents:
-  1. `Replicate_code_MissingRDPatent_ML.do` contains the STATA code that produces all our results in the paper;
+  1. `Replicate_code_MissingRDPatent_ML.do` contains the STATA code that produces our main results in the paper;
   2. `Replicate_data_MissingRDPatent_ML.dta` contains the dataset (in STATA format) used in the paper.
  
-
-
-
 **Sample Data Construction**
 * PERMCO here is a pseudo firm identifier for illustration purposes.
 * Variables definitions are as follows, and interested readers are referred to our paper and the original data sources to collect them.
@@ -58,7 +56,7 @@ Please contact Po-Hsuan Hsu (pohsuanhsu@mx.nthu.edu.tw) or Hui-Ching Chuang (hui
 
 ## Citation
 ```
-Chuang, Hui-Ching and Hsu, Po-Hsuan and Kuan, Chung‐Ming and Yang, Jui-Chung, Limitation of Firm Fixed Effects Models and the Missing R\&D-Patent Relation: New Methods and Evidence (June 27, 2022). Available at SSRN: https://ssrn.com/abstract=4636846 or http://dx.doi.org/10.2139/ssrn.4636846
+Chuang, Hui-Ching and Hsu, Po-Hsuan and Kuan, Chung‐Ming and Yang, Jui-Chung, Limitation of Firm Fixed Effects Models and the Missing R&D-Patent Relation: New Methods and Evidence (June 27, 2022). Available at SSRN: https://ssrn.com/abstract=4636846 or http://dx.doi.org/10.2139/ssrn.4636846
 ```
 ```
 @article{chuang2022reexam, 
