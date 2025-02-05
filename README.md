@@ -1,19 +1,19 @@
 # Limitation of Firm Fixed Effects Models and the Missing R\&D-Patent Relation: New Methods and Evidence
 The repository provides the detailed examples and codes following the paper Chuang, H.C., Hsu, P.H., Kuan, C.M., Yang, J.C., 2022. *Limitation of Firm Fixed Effects Models and the Missing R&D-Patent Relation: New Methods and Evidence*. The paper is available at SSRN. https://ssrn.com/abstract=4636846
 
-In this set of code, we demonstrate how users can implement the following four ways for the potential bias from fixed effects regressions: 
+In this set of code, we demonstrate how users can implement the following four ways to identify the potential bias from fixed effects regressions: 
   1. Within Between Variation: check if within-firm variation dominates between-firm variation or vice versa 
-  2. Regression and Poisson regression with and without firm FEs
+  2. Linear regression and Poisson regression with and without firm FEs
   3. Adjusted Hausman-Taylor approach
-  4. Post-regularization and DML LASSO methods (note that you may need to use STATA v17)
+  4. Post-regularization LASSO (PRL) and Double Machine Learning (DML) methods for both linear and Poisson regression
 
 ## Data and Code Availability:
 We have prepared the following documents:
   1. `Replicate_code_MissingRDPatent_ML.do` contains the STATA code that produces our main results in the paper;
-  2. `Replicate_data_MissingRDPatent_ML.dta` contains the dataset (in STATA format) used in the paper.
+  2. `Replicate_data_MissingRDPatent_ML.dta` contains the dataset used in the paper.
  
 **Sample Data Construction**
-* PERMCO here is a pseudo firm identifier for illustration purposes.
+* PERMCO here is a masked firm identifier for illustration purposes.
 * Variables definitions are as follows, and interested readers are referred to our paper and the original data sources to collect them.
   - patent:     Number of patent (data from USPTO PatentsView)
   - lnnpatent:  The logarithm of one plus the number of patents (data from USPTO PatentsView)
@@ -33,15 +33,23 @@ We have prepared the following documents:
 
 
 **Results for Sample Data**
-* Depends on computer capacity; we also provide results using the sample data.
-  - `Fixed_Effects_Linear_Model_Estimates.csv` contains the results of the estimation for OLS with and without FEs.
-  - `Within_Between_Variation.smcl` contains the log file for running the Between and Within variations of the key variables.  
-  - `Post_regularization_LASSO_Linear_Model_Estimates.csv` contains the results of the estimation for the Post-regularization LASSO linear model.	
-  - `DML_LASSO_Linear_Model_Estimates.csv` contains the results of the estimation for the double machine learning (DML) LASSO linear model.	
-  - `Fixed_Effects_Poisson_Model_Estimates.csv` contains the results of the estimation for the Poisson model with and without FEs.
-  - `Post_regularization_LASSO_Poisson_Model_Estimates.csv` contains the results of the estimation for the Post-regularization LASSO Poisson model.		
-  - `DML_LASSO_Poisson_Model_Estimates.csv` contains the results of the estimation for DML LASSO Poisson model.	
-
+* Depends on computer capacity; we also provide results and corresponding STATA log files.
+  * Log files:
+    - ReplicateLog_Within_Between_Variation: contains the log file for running the Between and Within variations of the key variables.  
+    - ReplicateLog_OLS_FE_adjHT: contains the log file of the estimation for OLS with and without FEs and adjusted Hausman-Taylor.
+    - ReplicateLog_PRL_Linear: contains the log file of the estimation for the PRL linear model.	
+    - ReplicateLog_DML_Linear: contains the log file of the estimation for the DML linear model.
+    - ReplicateLog_Poisson_FE: contains the log file of the estimation for Poisso regression with and without FEs.
+    - ReplicateLog_PRL_Poisson: contains the log file of the estimation for the PRL Poisson model.
+    - ReplicateLog_DML_Poisson: contains the log file of the estimation for the DML Poisson model.
+      
+  * csv files:
+    - RDPatentFE_FE_OLS_adjHT_estimates.csv
+    - RDPatentFE_PRL_Linear_estimates.csv
+    - RDPatentFE_DML_Linear_estimates.csv
+    - RDPatentFE_Poisson_FE_estimates.csv
+    - RDPatentFE_PRL_Poisson_estimates.csv
+    - RDPatentFE_DML_Poisson_estimates.csv
 
 **Software**
 - The STATA version to fully implement the replicate code is: STATA 17.
