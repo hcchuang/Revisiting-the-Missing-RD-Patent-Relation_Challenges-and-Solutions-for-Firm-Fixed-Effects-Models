@@ -44,12 +44,12 @@ We have prepared the following documents:
     - ReplicateLog_DML_Poisson
       
   * csv files:
-    - RDPatentFE_FE_OLS_adjHT_estimates.csv
-    - RDPatentFE_PRL_Linear_estimates.csv
-    - RDPatentFE_DML_Linear_estimates.csv
-    - RDPatentFE_Poisson_FE_estimates.csv
-    - RDPatentFE_PRL_Poisson_estimates.csv
-    - RDPatentFE_DML_Poisson_estimates.csv
+    - FE_OLS_adjHT_estimates.csv
+    - PRL_Linear_estimates.csv
+    - DML_Linear_estimates.csv
+    - Poisson_FE_estimates.csv
+    - PRL_Poisson_estimates.csv
+    - DML_Poisson_estimates.csv
 
 **Software**
 - The STATA version to fully implement the replicate code is: STATA 17.
