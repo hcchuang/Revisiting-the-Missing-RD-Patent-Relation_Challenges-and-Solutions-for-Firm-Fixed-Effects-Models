@@ -1,0 +1,248 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}E:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\ReplicateLog_Results\ReplicateLog_OLS_FE_adjHT.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 5 Feb 2025, 18:20:06
+{txt}
+{com}. 
+. * Table 4: OLS and Fixed effect estimation 
+. 
+.         * Define variables of interests (please change accordingly)
+.         local innov_used "lnnpatent"
+{txt}
+{com}.         local rd_used "RDAT"
+{txt}
+{com}.         local ctrl "lnME RD_missing lnAge lnK2L TobinQ ROA Leverage CASHAT KZidx  InstOwn oms_HHidx oms_HHidx_square"
+{txt}
+{com}.         local allvars "`rd_used' `ctrl'"
+{txt}
+{com}.         
+.         * generate the de-mean variables
+.         sort PERMCO
+{txt}
+{com}.         foreach v of local allvars {c -(}
+{txt}  2{com}.                 by PERMCO: egen mean_`v' = mean(`v')
+{txt}  3{com}.                 gen demean_`v' = `v' - mean_`v'
+{txt}  4{com}.         {c )-}
+{txt}
+{com}.         local demean_ctrl = "demean_lnME demean_RD_missing demean_lnAge demean_lnK2L demean_TobinQ demean_ROA demean_Leverage demean_CASHAT demean_KZidx demean_InstOwn demean_oms_HHidx demean_oms_HHidx_square"
+{txt}
+{com}.         
+.         
+.         estimates clear
+{txt}
+{com}.         
+.         * Fixed Effect on firm and year
+.         reghdfe `innov_used' `rd_used' `ctrl' , absorb(i.PERMCO i.fyear) vce(cluster PERMCO)
+{res}{txt}(dropped 1721 {browse "http://scorreia.com/research/singletons.pdf":singleton observations})
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 9 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    84,620
+{txt}Absorbing 2 HDFE groups{col 51}F({res}  13{txt},{res}   9822{txt}){col 67}= {res}     21.28
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.8527
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.8333
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0260
+{txt}{col 1}Number of clusters ({res}PERMCO{txt}) {col 30}= {res}     9,823{txt}{col 51}Root MSE{col 67}= {res}    0.4542
+
+{txt}{ralign 82:(Std. err. adjusted for {res:9,823} clusters in {res:PERMCO})}
+{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 18}{c |}{col 30}    Robust
+{col 1}       lnnpatent{col 18}{c |} Coefficient{col 30}  std. err.{col 42}      t{col 50}   P>|t|{col 58}     [95% con{col 71}f. interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}RDAT {c |}{col 18}{res}{space 2} .0409847{col 30}{space 2} .0275651{col 41}{space 1}    1.49{col 50}{space 3}0.137{col 58}{space 4}-.0130485{col 71}{space 3} .0950179
+{txt}{space 12}lnME {c |}{col 18}{res}{space 2} .1123549{col 30}{space 2} .0074433{col 41}{space 1}   15.09{col 50}{space 3}0.000{col 58}{space 4} .0977646{col 71}{space 3} .1269453
+{txt}{space 6}RD_missing {c |}{col 18}{res}{space 2}-.0261571{col 30}{space 2} .0138615{col 41}{space 1}   -1.89{col 50}{space 3}0.059{col 58}{space 4}-.0533285{col 71}{space 3} .0010144
+{txt}{space 11}lnAge {c |}{col 18}{res}{space 2} .1076764{col 30}{space 2} .0189336{col 41}{space 1}    5.69{col 50}{space 3}0.000{col 58}{space 4} .0705626{col 71}{space 3} .1447901
+{txt}{space 11}lnK2L {c |}{col 18}{res}{space 2} .0225671{col 30}{space 2} .0068654{col 41}{space 1}    3.29{col 50}{space 3}0.001{col 58}{space 4} .0091095{col 71}{space 3} .0360248
+{txt}{space 10}TobinQ {c |}{col 18}{res}{space 2}-.0178684{col 30}{space 2} .0035888{col 41}{space 1}   -4.98{col 50}{space 3}0.000{col 58}{space 4}-.0249032{col 71}{space 3}-.0108335
+{txt}{space 13}ROA {c |}{col 18}{res}{space 2}-.0846338{col 30}{space 2} .0228107{col 41}{space 1}   -3.71{col 50}{space 3}0.000{col 58}{space 4}-.1293474{col 71}{space 3}-.0399203
+{txt}{space 8}Leverage {c |}{col 18}{res}{space 2} .0030813{col 30}{space 2} .0250784{col 41}{space 1}    0.12{col 50}{space 3}0.902{col 58}{space 4}-.0460775{col 71}{space 3}   .05224
+{txt}{space 10}CASHAT {c |}{col 18}{res}{space 2} .0501121{col 30}{space 2} .0309378{col 41}{space 1}    1.62{col 50}{space 3}0.105{col 58}{space 4}-.0105324{col 71}{space 3} .1107567
+{txt}{space 11}KZidx {c |}{col 18}{res}{space 2} .0006084{col 30}{space 2} .0002879{col 41}{space 1}    2.11{col 50}{space 3}0.035{col 58}{space 4} .0000441{col 71}{space 3} .0011727
+{txt}{space 9}InstOwn {c |}{col 18}{res}{space 2} -.052179{col 30}{space 2} .0297709{col 41}{space 1}   -1.75{col 50}{space 3}0.080{col 58}{space 4}-.1105361{col 71}{space 3} .0061782
+{txt}{space 7}oms_HHidx {c |}{col 18}{res}{space 2}-.1850267{col 30}{space 2} .0808818{col 41}{space 1}   -2.29{col 50}{space 3}0.022{col 58}{space 4}-.3435717{col 71}{space 3}-.0264818
+{txt}oms_HHidx_square {c |}{col 18}{res}{space 2} .1714503{col 30}{space 2}  .070384{col 41}{space 1}    2.44{col 50}{space 3}0.015{col 58}{space 4} .0334833{col 71}{space 3} .3094174
+{txt}{space 11}_cons {c |}{col 18}{res}{space 2}-1.124512{col 30}{space 2} .1254853{col 41}{space 1}   -8.96{col 50}{space 3}0.000{col 58}{space 4}-1.370489{col 71}{space 3}-.8785345
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      PERMCO{col 14}{c |}{space 1}     9823{col 27}{space 1}     9823{col 39}{result}{space 1}        0{col 53}{text}*{col 54}{c |}
+{res}{col 1}{text}       fyear{col 14}{c |}{space 1}       26{col 27}{space 1}        1{col 39}{result}{space 1}       25{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+* = FE nested within cluster; treated as redundant for DoF computation
+{res}{txt}
+{com}.         estadd local FirmFE "yes",replace
+
+{txt}added macro:
+             e(FirmFE) : "{res:yes}"
+
+{com}.     estadd local YearFE "yes",replace
+
+{txt}added macro:
+             e(YearFE) : "{res:yes}"
+
+{com}.     estimates store FE
+{txt}
+{com}.         
+.         * OLS
+.         reg `innov_used' `rd_used' `ctrl' i.fyear, vce(cluster PERMCO)
+
+{txt}Linear regression                               Number of obs     = {res}    86,341
+                                                {txt}F(38, 11543)      =  {res}    48.33
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.3624
+                                                {txt}Root MSE          =    {res} .88284
+
+{txt}{ralign 82:(Std. err. adjusted for {res:11,544} clusters in {res:PERMCO})}
+{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 18}{c |}{col 30}    Robust
+{col 1}       lnnpatent{col 18}{c |} Coefficient{col 30}  std. err.{col 42}      t{col 50}   P>|t|{col 58}     [95% con{col 71}f. interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}RDAT {c |}{col 18}{res}{space 2} .5934867{col 30}{space 2}  .041761{col 41}{space 1}   14.21{col 50}{space 3}0.000{col 58}{space 4}  .511628{col 71}{space 3} .6753453
+{txt}{space 12}lnME {c |}{col 18}{res}{space 2}  .275428{col 30}{space 2} .0126742{col 41}{space 1}   21.73{col 50}{space 3}0.000{col 58}{space 4} .2505844{col 71}{space 3} .3002717
+{txt}{space 6}RD_missing {c |}{col 18}{res}{space 2}-.5388972{col 30}{space 2} .0196671{col 41}{space 1}  -27.40{col 50}{space 3}0.000{col 58}{space 4}-.5774479{col 71}{space 3}-.5003464
+{txt}{space 11}lnAge {c |}{col 18}{res}{space 2} .1769992{col 30}{space 2} .0121775{col 41}{space 1}   14.53{col 50}{space 3}0.000{col 58}{space 4} .1531292{col 71}{space 3} .2008692
+{txt}{space 11}lnK2L {c |}{col 18}{res}{space 2}  .036862{col 30}{space 2} .0070232{col 41}{space 1}    5.25{col 50}{space 3}0.000{col 58}{space 4} .0230953{col 71}{space 3} .0506287
+{txt}{space 10}TobinQ {c |}{col 18}{res}{space 2}-.0491064{col 30}{space 2} .0059068{col 41}{space 1}   -8.31{col 50}{space 3}0.000{col 58}{space 4}-.0606847{col 71}{space 3}-.0375281
+{txt}{space 13}ROA {c |}{col 18}{res}{space 2}-.1310115{col 30}{space 2} .0459519{col 41}{space 1}   -2.85{col 50}{space 3}0.004{col 58}{space 4} -.221085{col 71}{space 3} -.040938
+{txt}{space 8}Leverage {c |}{col 18}{res}{space 2}-.0654012{col 30}{space 2} .0383085{col 41}{space 1}   -1.71{col 50}{space 3}0.088{col 58}{space 4}-.1404923{col 71}{space 3} .0096899
+{txt}{space 10}CASHAT {c |}{col 18}{res}{space 2}-.0082104{col 30}{space 2} .0477803{col 41}{space 1}   -0.17{col 50}{space 3}0.864{col 58}{space 4}-.1018679{col 71}{space 3} .0854471
+{txt}{space 11}KZidx {c |}{col 18}{res}{space 2} .0006135{col 30}{space 2} .0005528{col 41}{space 1}    1.11{col 50}{space 3}0.267{col 58}{space 4}-.0004701{col 71}{space 3} .0016972
+{txt}{space 9}InstOwn {c |}{col 18}{res}{space 2}-.3288823{col 30}{space 2} .0652037{col 41}{space 1}   -5.04{col 50}{space 3}0.000{col 58}{space 4}-.4566927{col 71}{space 3}-.2010719
+{txt}{space 7}oms_HHidx {c |}{col 18}{res}{space 2} .4433727{col 30}{space 2} .1711743{col 41}{space 1}    2.59{col 50}{space 3}0.010{col 58}{space 4}  .107842{col 71}{space 3} .7789033
+{txt}oms_HHidx_square {c |}{col 18}{res}{space 2}-.4725937{col 30}{space 2} .1429862{col 41}{space 1}   -3.31{col 50}{space 3}0.001{col 58}{space 4} -.752871{col 71}{space 3}-.1923164
+{txt}{space 16} {c |}
+{space 11}fyear {c |}
+{space 11}1976  {c |}{col 18}{res}{space 2}-.1014811{col 30}{space 2} .0099604{col 41}{space 1}  -10.19{col 50}{space 3}0.000{col 58}{space 4}-.1210052{col 71}{space 3}-.0819571
+{txt}{space 11}1977  {c |}{col 18}{res}{space 2} -.142525{col 30}{space 2}  .012225{col 41}{space 1}  -11.66{col 50}{space 3}0.000{col 58}{space 4}-.1664881{col 71}{space 3}-.1185619
+{txt}{space 11}1978  {c |}{col 18}{res}{space 2}-.1902525{col 30}{space 2} .0133789{col 41}{space 1}  -14.22{col 50}{space 3}0.000{col 58}{space 4}-.2164775{col 71}{space 3}-.1640275
+{txt}{space 11}1979  {c |}{col 18}{res}{space 2}-.2208819{col 30}{space 2} .0143669{col 41}{space 1}  -15.37{col 50}{space 3}0.000{col 58}{space 4}-.2490434{col 71}{space 3}-.1927204
+{txt}{space 11}1980  {c |}{col 18}{res}{space 2}-.2262176{col 30}{space 2} .0157346{col 41}{space 1}  -14.38{col 50}{space 3}0.000{col 58}{space 4}-.2570602{col 71}{space 3}-.1953751
+{txt}{space 11}1981  {c |}{col 18}{res}{space 2}-.2588216{col 30}{space 2}  .015938{col 41}{space 1}  -16.24{col 50}{space 3}0.000{col 58}{space 4}-.2900629{col 71}{space 3}-.2275804
+{txt}{space 11}1982  {c |}{col 18}{res}{space 2}-.2995345{col 30}{space 2} .0171997{col 41}{space 1}  -17.42{col 50}{space 3}0.000{col 58}{space 4}-.3332489{col 71}{space 3}-.2658202
+{txt}{space 11}1983  {c |}{col 18}{res}{space 2}-.3482457{col 30}{space 2} .0180568{col 41}{space 1}  -19.29{col 50}{space 3}0.000{col 58}{space 4}  -.38364{col 71}{space 3}-.3128513
+{txt}{space 11}1984  {c |}{col 18}{res}{space 2}-.3205998{col 30}{space 2} .0183861{col 41}{space 1}  -17.44{col 50}{space 3}0.000{col 58}{space 4}-.3566397{col 71}{space 3}-.2845599
+{txt}{space 11}1985  {c |}{col 18}{res}{space 2} -.359267{col 30}{space 2} .0197766{col 41}{space 1}  -18.17{col 50}{space 3}0.000{col 58}{space 4}-.3980325{col 71}{space 3}-.3205016
+{txt}{space 11}1986  {c |}{col 18}{res}{space 2} -.352203{col 30}{space 2} .0206059{col 41}{space 1}  -17.09{col 50}{space 3}0.000{col 58}{space 4}-.3925941{col 71}{space 3}-.3118119
+{txt}{space 11}1987  {c |}{col 18}{res}{space 2}-.3179863{col 30}{space 2} .0206419{col 41}{space 1}  -15.40{col 50}{space 3}0.000{col 58}{space 4}-.3584479{col 71}{space 3}-.2775246
+{txt}{space 11}1988  {c |}{col 18}{res}{space 2}-.3475016{col 30}{space 2} .0209855{col 41}{space 1}  -16.56{col 50}{space 3}0.000{col 58}{space 4}-.3886368{col 71}{space 3}-.3063664
+{txt}{space 11}1989  {c |}{col 18}{res}{space 2}-.3499203{col 30}{space 2} .0215656{col 41}{space 1}  -16.23{col 50}{space 3}0.000{col 58}{space 4}-.3921925{col 71}{space 3} -.307648
+{txt}{space 11}1990  {c |}{col 18}{res}{space 2}-.3128721{col 30}{space 2}  .022526{col 41}{space 1}  -13.89{col 50}{space 3}0.000{col 58}{space 4}-.3570268{col 71}{space 3}-.2687173
+{txt}{space 11}1991  {c |}{col 18}{res}{space 2}-.3901983{col 30}{space 2} .0228496{col 41}{space 1}  -17.08{col 50}{space 3}0.000{col 58}{space 4}-.4349874{col 71}{space 3}-.3454092
+{txt}{space 11}1992  {c |}{col 18}{res}{space 2} -.423996{col 30}{space 2} .0230357{col 41}{space 1}  -18.41{col 50}{space 3}0.000{col 58}{space 4}-.4691498{col 71}{space 3}-.3788422
+{txt}{space 11}1993  {c |}{col 18}{res}{space 2}-.4650461{col 30}{space 2} .0231265{col 41}{space 1}  -20.11{col 50}{space 3}0.000{col 58}{space 4} -.510378{col 71}{space 3}-.4197143
+{txt}{space 11}1994  {c |}{col 18}{res}{space 2}-.4167276{col 30}{space 2} .0234524{col 41}{space 1}  -17.77{col 50}{space 3}0.000{col 58}{space 4}-.4626982{col 71}{space 3}-.3707571
+{txt}{space 11}1995  {c |}{col 18}{res}{space 2}-.4983548{col 30}{space 2} .0239406{col 41}{space 1}  -20.82{col 50}{space 3}0.000{col 58}{space 4}-.5452825{col 71}{space 3}-.4514271
+{txt}{space 11}1996  {c |}{col 18}{res}{space 2}-.5252356{col 30}{space 2} .0243516{col 41}{space 1}  -21.57{col 50}{space 3}0.000{col 58}{space 4}-.5729689{col 71}{space 3}-.4775023
+{txt}{space 11}1997  {c |}{col 18}{res}{space 2}-.5909253{col 30}{space 2}  .025469{col 41}{space 1}  -23.20{col 50}{space 3}0.000{col 58}{space 4}-.6408488{col 71}{space 3}-.5410018
+{txt}{space 11}1998  {c |}{col 18}{res}{space 2}-.5644159{col 30}{space 2} .0262477{col 41}{space 1}  -21.50{col 50}{space 3}0.000{col 58}{space 4}-.6158657{col 71}{space 3} -.512966
+{txt}{space 11}1999  {c |}{col 18}{res}{space 2}-.5920532{col 30}{space 2} .0266713{col 41}{space 1}  -22.20{col 50}{space 3}0.000{col 58}{space 4}-.6443334{col 71}{space 3} -.539773
+{txt}{space 11}2000  {c |}{col 18}{res}{space 2}-.5297578{col 30}{space 2} .0281196{col 41}{space 1}  -18.84{col 50}{space 3}0.000{col 58}{space 4} -.584877{col 71}{space 3}-.4746386
+{txt}{space 16} {c |}
+{space 11}_cons {c |}{col 18}{res}{space 2}-2.673213{col 30}{space 2} .1400071{col 41}{space 1}  -19.09{col 50}{space 3}0.000{col 58}{space 4} -2.94765{col 71}{space 3}-2.398775
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}.         estadd local FirmFE "no",replace
+
+{txt}added macro:
+             e(FirmFE) : "{res:no}"
+
+{com}.     estadd local YearFE "yes",replace
+
+{txt}added macro:
+             e(YearFE) : "{res:yes}"
+
+{com}.         estimates store OLS
+{txt}
+{com}.         
+.     * Adj-Hausman-Taylor    
+.         ivregress gmm `innov_used' `ctrl' i.fyear (`rd_used' = `demean_ctrl' demean_RDAT), wmatrix(cluster PERMCO)      
+{res}
+{txt}{col 1}Instrumental variables GMM regression{col 51}Number of obs{col 67}= {res}    86,341
+{txt}{col 1}{col 51}Wald chi2({res}38{txt}){col 67}= {res}   1344.09
+{txt}{col 1}{col 51}Prob > chi2{col 67}= {res}    0.0000
+{txt}{col 1}{col 51}R-squared{col 67}= {res}    0.2839
+{txt}{col 1}GMM weight matrix: Cluster (PERMCO){col 51}Root MSE{col 67}=    {res} .93537
+
+{txt}{ralign 82:(Std. err. adjusted for {res:11,544} clusters in {res:PERMCO})}
+{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 18}{c |}{col 30}    Robust
+{col 1}       lnnpatent{col 18}{c |} Coefficient{col 30}  std. err.{col 42}      z{col 50}   P>|z|{col 58}     [95% con{col 71}f. interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}RDAT {c |}{col 18}{res}{space 2} .2201009{col 30}{space 2} .0265358{col 41}{space 1}    8.29{col 50}{space 3}0.000{col 58}{space 4} .1680917{col 71}{space 3}   .27211
+{txt}{space 12}lnME {c |}{col 18}{res}{space 2} .1550548{col 30}{space 2} .0070528{col 41}{space 1}   21.98{col 50}{space 3}0.000{col 58}{space 4} .1412316{col 71}{space 3}  .168878
+{txt}{space 6}RD_missing {c |}{col 18}{res}{space 2}-.3592508{col 30}{space 2} .0144643{col 41}{space 1}  -24.84{col 50}{space 3}0.000{col 58}{space 4}-.3876003{col 71}{space 3}-.3309013
+{txt}{space 11}lnAge {c |}{col 18}{res}{space 2} .0849629{col 30}{space 2} .0085122{col 41}{space 1}    9.98{col 50}{space 3}0.000{col 58}{space 4} .0682792{col 71}{space 3} .1016465
+{txt}{space 11}lnK2L {c |}{col 18}{res}{space 2} .0280038{col 30}{space 2} .0053061{col 41}{space 1}    5.28{col 50}{space 3}0.000{col 58}{space 4} .0176041{col 71}{space 3} .0384035
+{txt}{space 10}TobinQ {c |}{col 18}{res}{space 2}-.0257111{col 30}{space 2} .0033284{col 41}{space 1}   -7.72{col 50}{space 3}0.000{col 58}{space 4}-.0322347{col 71}{space 3}-.0191875
+{txt}{space 13}ROA {c |}{col 18}{res}{space 2}-.1295025{col 30}{space 2}  .022268{col 41}{space 1}   -5.82{col 50}{space 3}0.000{col 58}{space 4}-.1731469{col 71}{space 3} -.085858
+{txt}{space 8}Leverage {c |}{col 18}{res}{space 2}-.0777335{col 30}{space 2} .0234133{col 41}{space 1}   -3.32{col 50}{space 3}0.001{col 58}{space 4}-.1236227{col 71}{space 3}-.0318443
+{txt}{space 10}CASHAT {c |}{col 18}{res}{space 2} .1492781{col 30}{space 2} .0274017{col 41}{space 1}    5.45{col 50}{space 3}0.000{col 58}{space 4} .0955718{col 71}{space 3} .2029845
+{txt}{space 11}KZidx {c |}{col 18}{res}{space 2} .0007719{col 30}{space 2} .0002847{col 41}{space 1}    2.71{col 50}{space 3}0.007{col 58}{space 4} .0002138{col 71}{space 3}   .00133
+{txt}{space 9}InstOwn {c |}{col 18}{res}{space 2}-.1243091{col 30}{space 2} .0318597{col 41}{space 1}   -3.90{col 50}{space 3}0.000{col 58}{space 4} -.186753{col 71}{space 3}-.0618651
+{txt}{space 7}oms_HHidx {c |}{col 18}{res}{space 2} .0925336{col 30}{space 2} .0818271{col 41}{space 1}    1.13{col 50}{space 3}0.258{col 58}{space 4}-.0678447{col 71}{space 3} .2529118
+{txt}oms_HHidx_square {c |}{col 18}{res}{space 2}  -.06022{col 30}{space 2} .0708232{col 41}{space 1}   -0.85{col 50}{space 3}0.395{col 58}{space 4}-.1990309{col 71}{space 3}  .078591
+{txt}{space 16} {c |}
+{space 11}fyear {c |}
+{space 11}1976  {c |}{col 18}{res}{space 2}-.0708109{col 30}{space 2} .0092144{col 41}{space 1}   -7.68{col 50}{space 3}0.000{col 58}{space 4}-.0888707{col 71}{space 3}-.0527511
+{txt}{space 11}1977  {c |}{col 18}{res}{space 2}-.0994879{col 30}{space 2} .0110639{col 41}{space 1}   -8.99{col 50}{space 3}0.000{col 58}{space 4}-.1211729{col 71}{space 3} -.077803
+{txt}{space 11}1978  {c |}{col 18}{res}{space 2}-.1299612{col 30}{space 2} .0118081{col 41}{space 1}  -11.01{col 50}{space 3}0.000{col 58}{space 4}-.1531046{col 71}{space 3}-.1068178
+{txt}{space 11}1979  {c |}{col 18}{res}{space 2}-.1596644{col 30}{space 2}  .012755{col 41}{space 1}  -12.52{col 50}{space 3}0.000{col 58}{space 4}-.1846638{col 71}{space 3} -.134665
+{txt}{space 11}1980  {c |}{col 18}{res}{space 2}-.1829194{col 30}{space 2}  .013971{col 41}{space 1}  -13.09{col 50}{space 3}0.000{col 58}{space 4} -.210302{col 71}{space 3}-.1555368
+{txt}{space 11}1981  {c |}{col 18}{res}{space 2}-.2205183{col 30}{space 2} .0141202{col 41}{space 1}  -15.62{col 50}{space 3}0.000{col 58}{space 4}-.2481935{col 71}{space 3}-.1928432
+{txt}{space 11}1982  {c |}{col 18}{res}{space 2}-.2489963{col 30}{space 2} .0151407{col 41}{space 1}  -16.45{col 50}{space 3}0.000{col 58}{space 4}-.2786716{col 71}{space 3}-.2193211
+{txt}{space 11}1983  {c |}{col 18}{res}{space 2}-.2817563{col 30}{space 2} .0160165{col 41}{space 1}  -17.59{col 50}{space 3}0.000{col 58}{space 4}-.3131481{col 71}{space 3}-.2503645
+{txt}{space 11}1984  {c |}{col 18}{res}{space 2}-.2686758{col 30}{space 2} .0161169{col 41}{space 1}  -16.67{col 50}{space 3}0.000{col 58}{space 4}-.3002644{col 71}{space 3}-.2370873
+{txt}{space 11}1985  {c |}{col 18}{res}{space 2}-.2831536{col 30}{space 2}  .017244{col 41}{space 1}  -16.42{col 50}{space 3}0.000{col 58}{space 4}-.3169512{col 71}{space 3}-.2493561
+{txt}{space 11}1986  {c |}{col 18}{res}{space 2}-.2768646{col 30}{space 2} .0179044{col 41}{space 1}  -15.46{col 50}{space 3}0.000{col 58}{space 4}-.3119565{col 71}{space 3}-.2417726
+{txt}{space 11}1987  {c |}{col 18}{res}{space 2}-.2588106{col 30}{space 2} .0175429{col 41}{space 1}  -14.75{col 50}{space 3}0.000{col 58}{space 4}-.2931941{col 71}{space 3}-.2244271
+{txt}{space 11}1988  {c |}{col 18}{res}{space 2}-.2718893{col 30}{space 2} .0179763{col 41}{space 1}  -15.12{col 50}{space 3}0.000{col 58}{space 4}-.3071222{col 71}{space 3}-.2366565
+{txt}{space 11}1989  {c |}{col 18}{res}{space 2}-.2656244{col 30}{space 2} .0184917{col 41}{space 1}  -14.36{col 50}{space 3}0.000{col 58}{space 4}-.3018675{col 71}{space 3}-.2293813
+{txt}{space 11}1990  {c |}{col 18}{res}{space 2} -.238328{col 30}{space 2} .0189933{col 41}{space 1}  -12.55{col 50}{space 3}0.000{col 58}{space 4}-.2755542{col 71}{space 3}-.2011018
+{txt}{space 11}1991  {c |}{col 18}{res}{space 2}-.2819878{col 30}{space 2} .0195902{col 41}{space 1}  -14.39{col 50}{space 3}0.000{col 58}{space 4} -.320384{col 71}{space 3}-.2435917
+{txt}{space 11}1992  {c |}{col 18}{res}{space 2}-.2961509{col 30}{space 2}  .020031{col 41}{space 1}  -14.78{col 50}{space 3}0.000{col 58}{space 4} -.335411{col 71}{space 3}-.2568908
+{txt}{space 11}1993  {c |}{col 18}{res}{space 2}-.3159104{col 30}{space 2} .0201218{col 41}{space 1}  -15.70{col 50}{space 3}0.000{col 58}{space 4}-.3553484{col 71}{space 3}-.2764724
+{txt}{space 11}1994  {c |}{col 18}{res}{space 2}-.2710309{col 30}{space 2} .0203984{col 41}{space 1}  -13.29{col 50}{space 3}0.000{col 58}{space 4} -.311011{col 71}{space 3}-.2310508
+{txt}{space 11}1995  {c |}{col 18}{res}{space 2}-.3290274{col 30}{space 2} .0208057{col 41}{space 1}  -15.81{col 50}{space 3}0.000{col 58}{space 4}-.3698057{col 71}{space 3} -.288249
+{txt}{space 11}1996  {c |}{col 18}{res}{space 2}-.3423766{col 30}{space 2} .0213356{col 41}{space 1}  -16.05{col 50}{space 3}0.000{col 58}{space 4}-.3841935{col 71}{space 3}-.3005597
+{txt}{space 11}1997  {c |}{col 18}{res}{space 2}-.3879786{col 30}{space 2}  .021981{col 41}{space 1}  -17.65{col 50}{space 3}0.000{col 58}{space 4}-.4310605{col 71}{space 3}-.3448967
+{txt}{space 11}1998  {c |}{col 18}{res}{space 2}-.3664034{col 30}{space 2} .0227308{col 41}{space 1}  -16.12{col 50}{space 3}0.000{col 58}{space 4}-.4109549{col 71}{space 3} -.321852
+{txt}{space 11}1999  {c |}{col 18}{res}{space 2}-.3830711{col 30}{space 2} .0232725{col 41}{space 1}  -16.46{col 50}{space 3}0.000{col 58}{space 4}-.4286843{col 71}{space 3} -.337458
+{txt}{space 11}2000  {c |}{col 18}{res}{space 2}-.3238474{col 30}{space 2} .0243918{col 41}{space 1}  -13.28{col 50}{space 3}0.000{col 58}{space 4}-.3716545{col 71}{space 3}-.2760403
+{txt}{space 16} {c |}
+{space 11}_cons {c |}{col 18}{res}{space 2}  -1.3659{col 30}{space 2} .0901931{col 41}{space 1}  -15.14{col 50}{space 3}0.000{col 58}{space 4}-1.542675{col 71}{space 3}-1.189125
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 14 172}Instrumented: {res:RDAT}{p_end}
+{p 0 14 172}{space 1}Instruments: {res:lnME RD_missing lnAge lnK2L TobinQ ROA Leverage CASHAT KZidx InstOwn oms_HHidx oms_HHidx_square 1976.fyear 1977.fyear 1978.fyear 1979.fyear 1980.fyear 1981.fyear 1982.fyear 1983.fyear 1984.fyear 1985.fyear 1986.fyear 1987.fyear 1988.fyear 1989.fyear 1990.fyear 1991.fyear 1992.fyear 1993.fyear 1994.fyear 1995.fyear 1996.fyear 1997.fyear 1998.fyear 1999.fyear 2000.fyear demean_lnME demean_RD_missing demean_lnAge demean_lnK2L demean_TobinQ demean_ROA demean_Leverage demean_CASHAT demean_KZidx demean_InstOwn demean_oms_HHidx demean_oms_HHidx_square demean_RDAT}{p_end}
+
+{com}.         estadd local FirmFE "no"
+
+{txt}added macro:
+             e(FirmFE) : "{res:no}"
+
+{com}.     estadd local YearFE "yes"
+
+{txt}added macro:
+             e(YearFE) : "{res:yes}"
+
+{com}.         estimates store adjHT
+{txt}
+{com}.   
+.         *Output the Hausman Taylor table as *.csv file 
+.     esttab FE OLS adjHT, stats(FirmFE YearFE N) noconstant  star(* 0.10 ** 0.05 *** 0.01)  se(3) ar2 b(3) replace title("Fixed Effects FE_OLS_adjHT Model Estimates") mtitle("FE" "OLS" "adjHT"), using "FE_OLS_adjHT_estimates.csv"      
+{res}{txt}(output written to {browse  `"FE_OLS_adjHT_estimates.csv"'})
+
+{com}.         
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}E:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\ReplicateLog_Results\ReplicateLog_OLS_FE_adjHT.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 5 Feb 2025, 18:20:10
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
