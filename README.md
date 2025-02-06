@@ -13,7 +13,7 @@ We have prepared the following documents:
   2. `Replicate_data_MissingRDPatent_ML.dta` contains the dataset used in the paper.
  
 **Sample Data Construction**
-* PERMCO here is a masked firm identifier for illustration purposes.
+* PERMCO here is a masked firm identifier.
 * Variables definitions are as follows, and interested readers are referred to our paper and the original data sources to collect them.
   - patent:     Number of patent (data from USPTO PatentsView)
   - lnnpatent:  The logarithm of one plus the number of patents (data from USPTO PatentsView)
