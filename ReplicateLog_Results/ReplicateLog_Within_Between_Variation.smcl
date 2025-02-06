@@ -1,0 +1,113 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}E:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\ReplicateLog_Within_Between_Variation.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 5 Feb 2025, 13:01:18
+{txt}
+{com}. 
+. *--------------------------------------------------------------------------------------------------
+. * Table 2: Summary statistics and correlation
+. 
+.         * Define variables of interests (please change accordingly)
+.         local innov_used "lnnpatent"
+{txt}
+{com}.         local rd_used "RDAT"
+{txt}
+{com}.         local ctrl "lnME RD_missing lnAge lnK2L TobinQ ROA Leverage CASHAT KZidx  InstOwn oms_HHidx oms_HHidx_square"
+{txt}
+{com}. 
+.         estimates clear
+{txt}
+{com}. 
+.         tabstat `innov_used' `rd_used' `ctrl', statistics(mean, sd, min, p25, p50, p75,  max)
+
+{txt}   Stats {...}
+{c |}{...}
+  lnnpat~t      RDAT      lnME  RD_mis~g     lnAge     lnK2L    TobinQ       ROA  Leverage    CASHAT     KZidx   InstOwn  oms_HH~x  oms_HH~e
+{hline 9}{c +}{hline 140}
+{ralign 8:Mean} {...}
+{c |}{...}
+ {res} .5259135  .1275981  11.12661  .4299695   2.47639   10.0039  1.756998  .0956779  .2302904  .1382766 -3.422248  .2296493  .7537747   .607556
+{txt}{ralign 8:SD} {...}
+{c |}{...}
+ {res} 1.105376  .2625255  2.067017  .4950743  .7534856  1.286268  1.655268  .1767852  .1827564   .173941  10.76914  .2393389  .1984445  .2347995
+{txt}{ralign 8:Min} {...}
+{c |}{...}
+ {res}        0         0  6.988889         0  .6931472  6.892642  .5335185 -.8824926         0  .0003113 -79.54198         0         0         0
+{txt}{ralign 8:p25} {...}
+{c |}{...}
+ {res}        0         0  9.597013         0   1.94591  9.181456  .9418882  .0583479  .0692493  .0227589 -3.484498  .0086841  .7024671    .49346
+{txt}{ralign 8:p50} {...}
+{c |}{...}
+ {res}        0   .000329  10.95203         0  2.484907  9.854636  1.216767  .1265599  .2116133   .066865 -.5378447   .146757  .8033816  .6454219
+{txt}{ralign 8:p75} {...}
+{c |}{...}
+ {res} .6931472  .1407681  12.50529         1  3.091042  10.63766  1.852261  .1862251  .3510535  .1831939  1.032463  .4010593  .8872448  .7872034
+{txt}{ralign 8:Max} {...}
+{c |}{...}
+ {res} 8.386629  1.643581  16.40639         1  3.850148  14.10489  12.63845  .4042266  .7443391   .882182   6.78823  .8386793  .9886112   .977352
+{txt}{hline 9}{c BT}{hline 140}
+
+{com}.         corr `innov_used' `rd_used' `ctrl'
+{txt}(obs=86,341)
+
+             {c |} lnnpat~t     RDAT     lnME RD_mis~g    lnAge    lnK2L   TobinQ      ROA Leverage   CASHAT    KZidx  InstOwn oms_HH~x oms_HH~e
+{hline 13}{c +}{hline 126}
+   lnnpatent {c |}{res}   1.0000
+        {txt}RDAT {c |}{res}   0.1711   1.0000
+        {txt}lnME {c |}{res}   0.4799  -0.0259   1.0000
+  {txt}RD_missing {c |}{res}  -0.3080  -0.4130  -0.0695   1.0000
+       {txt}lnAge {c |}{res}   0.2966  -0.0973   0.3626   0.0118   1.0000
+       {txt}lnK2L {c |}{res}   0.1061  -0.0551   0.2894   0.1242   0.0349   1.0000
+      {txt}TobinQ {c |}{res}   0.0723   0.3220   0.2395  -0.1541  -0.2113   0.0131   1.0000
+         {txt}ROA {c |}{res}   0.0928  -0.4415   0.2873   0.1019   0.2294  -0.0115  -0.1961   1.0000
+    {txt}Leverage {c |}{res}  -0.0847  -0.2400  -0.0883   0.1847   0.0386   0.1895  -0.2353   0.0096   1.0000
+      {txt}CASHAT {c |}{res}   0.0127   0.3770  -0.0023  -0.1648  -0.2396  -0.0666   0.3681  -0.2939  -0.4396   1.0000
+       {txt}KZidx {c |}{res}  -0.0134  -0.0425  -0.0790   0.0244   0.0400   0.2034  -0.1489  -0.0466   0.3072  -0.4675   1.0000
+     {txt}InstOwn {c |}{res}   0.2632   0.0051   0.6869  -0.0508   0.2460   0.2374   0.1176   0.1948  -0.0683   0.0063  -0.0363   1.0000
+   {txt}oms_HHidx {c |}{res}   0.0098   0.1518  -0.0071  -0.1003  -0.0969  -0.0323   0.0733  -0.0550  -0.0648   0.1049  -0.0248  -0.0242   1.0000
+{txt}oms_HHidx_~e {c |}{res}  -0.0011   0.1683  -0.0146  -0.1009  -0.1229  -0.0367   0.0938  -0.0658  -0.0783   0.1332  -0.0411  -0.0359   0.9673   1.0000
+
+{txt}
+{com}. 
+.         
+. *--------------------------------------------------------------------------------------------------
+. * Table 3: Within and between variations
+.     
+.         * Define variables of interests (please change accordingly)
+.         local innov_used "lnnpatent"
+{txt}
+{com}.         local rd_used "RDAT"
+{txt}
+{com}. 
+.         * Declare data to be panel data
+.         xtset PERMCO fyear
+{res}
+{col 1}{txt:Panel variable: }{res:PERMCO}{txt: (unbalanced)}
+{p 1 16 2}{txt:Time variable: }{res:fyear}{txt:, }{res:{bind:1975}}{txt: to }{res:{bind:2000}}{txt:, but with gaps}{p_end}
+{txt}{col 10}Delta: {res}1 unit
+{txt}
+{com}.         
+.         * Summarize xt data
+.     xtsum `innov_used' `rd_used'        
+
+{txt}Variable         {c |}      Mean   Std. dev.       Min        Max {c |}    Observations
+{hline 17}{c +}{hline 44}{c +}{hline 16}
+lnnpat~t{col 10}overall {c |} {res} .5259135   1.105376          0   8.386629{txt} {c |}{col 69}N =   86341
+{col 10}between {c |}{col 31}{res} .7635229          0   6.961255{txt} {c |}{col 69}n =   11544
+{col 10}within  {c |}{col 31}{res}  .430142  -4.690358   4.361144{txt} {c |} T-bar =  7.4793
+{col 18}{c |}{col 63}{c |}
+RDAT{col 10}overall {c |} {res} .1275981   .2625255          0   1.643581{txt} {c |}{col 69}N =   86341
+{col 10}between {c |}{col 31}{res} .2646873          0   1.643581{txt} {c |}{col 69}n =   11544
+{col 10}within  {c |}{col 31}{res} .1171485  -1.055289   1.351159{txt} {c |} T-bar =  7.4793
+
+{com}.         
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}E:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\ReplicateLog_Within_Between_Variation.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 5 Feb 2025, 13:01:19
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
