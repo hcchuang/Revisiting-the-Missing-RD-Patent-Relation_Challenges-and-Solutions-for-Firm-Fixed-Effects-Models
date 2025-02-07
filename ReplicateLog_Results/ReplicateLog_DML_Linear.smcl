@@ -1,0 +1,167 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\ReplicateLog_Results\ReplicateLog_DML_Linear.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 7 Feb 2025, 10:56:50
+{txt}
+{com}. 
+. * Table 4:  Double Machine Learning 
+. 
+.         * Define variables of interests
+.         local innov_used "lnnpatent"
+{txt}
+{com}.         local rd_used "RDAT"
+{txt}
+{com}.         local ctrl "lnME RD_missing lnAge lnK2L TobinQ ROA Leverage CASHAT KZidx  InstOwn oms_HHidx oms_HHidx_square"
+{txt}
+{com}.         
+.         estimates clear
+{res}{txt}
+{com}.         xporegress `innov_used' `rd_used' `ctrl', controls(i.PERMCO i.fyear) vce(cluster PERMCO) xfolds(5) rseed(1103) selection(bic, gridminok) 
+{res}
+{txt}Cross-fit fold 1 of 5 ...
+{res}{txt}Estimating lasso for lnnpatent using BIC
+{res}{txt}Estimating lasso for RDAT using BIC
+{res}{txt}Estimating lasso for lnME using BIC
+{res}{txt}Estimating lasso for RD_missing using BIC
+{res}{txt}Estimating lasso for lnAge using BIC
+{res}{txt}Estimating lasso for lnK2L using BIC
+{res}{txt}Estimating lasso for TobinQ using BIC
+{res}{txt}Estimating lasso for ROA using BIC
+{res}{txt}Estimating lasso for Leverage using BIC
+{res}{txt}Estimating lasso for CASHAT using BIC
+{res}{txt}Estimating lasso for KZidx using BIC
+{res}{txt}Estimating lasso for InstOwn using BIC
+{res}{txt}Estimating lasso for oms_HHidx using BIC
+{res}{txt}Estimating lasso for oms_HHidx_square using BIC
+
+Cross-fit fold 2 of 5 ...
+{res}{txt}Estimating lasso for lnnpatent using BIC
+{res}{txt}Estimating lasso for RDAT using BIC
+{res}{txt}Estimating lasso for lnME using BIC
+{res}{txt}Estimating lasso for RD_missing using BIC
+{res}{txt}Estimating lasso for lnAge using BIC
+{res}{txt}Estimating lasso for lnK2L using BIC
+{res}{txt}Estimating lasso for TobinQ using BIC
+{res}{txt}Estimating lasso for ROA using BIC
+{res}{txt}Estimating lasso for Leverage using BIC
+{res}{txt}Estimating lasso for CASHAT using BIC
+{res}{txt}Estimating lasso for KZidx using BIC
+{res}{txt}Estimating lasso for InstOwn using BIC
+{res}{txt}Estimating lasso for oms_HHidx using BIC
+{res}{txt}Estimating lasso for oms_HHidx_square using BIC
+
+Cross-fit fold 3 of 5 ...
+{res}{txt}Estimating lasso for lnnpatent using BIC
+{res}{txt}Estimating lasso for RDAT using BIC
+{res}{txt}Estimating lasso for lnME using BIC
+{res}{txt}Estimating lasso for RD_missing using BIC
+{res}{txt}Estimating lasso for lnAge using BIC
+{res}{txt}Estimating lasso for lnK2L using BIC
+{res}{txt}Estimating lasso for TobinQ using BIC
+{res}{txt}Estimating lasso for ROA using BIC
+{res}{txt}Estimating lasso for Leverage using BIC
+{res}{txt}Estimating lasso for CASHAT using BIC
+{res}{txt}Estimating lasso for KZidx using BIC
+{res}{txt}Estimating lasso for InstOwn using BIC
+{res}{txt}Estimating lasso for oms_HHidx using BIC
+{res}{txt}Estimating lasso for oms_HHidx_square using BIC
+
+Cross-fit fold 4 of 5 ...
+{res}{txt}Estimating lasso for lnnpatent using BIC
+{res}{txt}Estimating lasso for RDAT using BIC
+{res}{txt}Estimating lasso for lnME using BIC
+{res}{txt}Estimating lasso for RD_missing using BIC
+{res}{txt}Estimating lasso for lnAge using BIC
+{res}{txt}Estimating lasso for lnK2L using BIC
+{res}{txt}Estimating lasso for TobinQ using BIC
+{res}{txt}Estimating lasso for ROA using BIC
+{res}{txt}Estimating lasso for Leverage using BIC
+{res}{txt}Estimating lasso for CASHAT using BIC
+{res}{txt}Estimating lasso for KZidx using BIC
+{res}{txt}Estimating lasso for InstOwn using BIC
+{res}{txt}Estimating lasso for oms_HHidx using BIC
+{res}{txt}Estimating lasso for oms_HHidx_square using BIC
+
+Cross-fit fold 5 of 5 ...
+{res}{txt}Estimating lasso for lnnpatent using BIC
+{res}{txt}Estimating lasso for RDAT using BIC
+{res}{txt}Estimating lasso for lnME using BIC
+{res}{txt}Estimating lasso for RD_missing using BIC
+{res}{txt}Estimating lasso for lnAge using BIC
+{res}{txt}Estimating lasso for lnK2L using BIC
+{res}{txt}Estimating lasso for TobinQ using BIC
+{res}{txt}Estimating lasso for ROA using BIC
+{res}{txt}Estimating lasso for Leverage using BIC
+{res}{txt}Estimating lasso for CASHAT using BIC
+{res}{txt}Estimating lasso for KZidx using BIC
+{res}{txt}Estimating lasso for InstOwn using BIC
+{res}{txt}Estimating lasso for oms_HHidx using BIC
+{res}{txt}Estimating lasso for oms_HHidx_square using BIC
+{res}
+{txt}Cross-fit partialing-out{col 38}Number of obs{col 67}={col 69}{res}    86,341
+{txt}linear model{col 38}Number of controls{col 67}={col 69}{res}    11,570
+{col 38}{txt}Number of selected controls{col 67}={col 69}{res}     1,737
+{col 38}{txt}Number of folds in cross-fit{col 67}={col 69}{res}         5
+{col 38}{txt}Number of resamples{col 67}={col 69}{res}         1
+{col 38}{txt}Wald chi2({res:13}){col 67}={col 69}{res}   2240.25
+{col 38}{txt}Prob > chi2{col 67}={col 69}{res}    0.0000
+
+{txt}{ralign 82:(Std. err. adjusted for {res:11,544} clusters in {res:PERMCO})}
+{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 18}{c |}{col 30}    Robust
+{col 1}       lnnpatent{col 18}{c |} Coefficient{col 30}  std. err.{col 42}      z{col 50}   P>|z|{col 58}     [95% con{col 71}f. interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}RDAT {c |}{col 18}{res}{space 2} .2131053{col 30}{space 2} .0136054{col 41}{space 1}   15.66{col 50}{space 3}0.000{col 58}{space 4} .1864393{col 71}{space 3} .2397713
+{txt}{space 12}lnME {c |}{col 18}{res}{space 2} .0380684{col 30}{space 2} .0026831{col 41}{space 1}   14.19{col 50}{space 3}0.000{col 58}{space 4} .0328095{col 71}{space 3} .0433272
+{txt}{space 6}RD_missing {c |}{col 18}{res}{space 2}-.1616174{col 30}{space 2} .0056502{col 41}{space 1}  -28.60{col 50}{space 3}0.000{col 58}{space 4}-.1726916{col 71}{space 3}-.1505432
+{txt}{space 11}lnAge {c |}{col 18}{res}{space 2} .0553494{col 30}{space 2} .0041529{col 41}{space 1}   13.33{col 50}{space 3}0.000{col 58}{space 4} .0472099{col 71}{space 3} .0634889
+{txt}{space 11}lnK2L {c |}{col 18}{res}{space 2} .0101206{col 30}{space 2} .0018017{col 41}{space 1}    5.62{col 50}{space 3}0.000{col 58}{space 4} .0065894{col 71}{space 3} .0136519
+{txt}{space 10}TobinQ {c |}{col 18}{res}{space 2} .0011278{col 30}{space 2} .0019966{col 41}{space 1}    0.56{col 50}{space 3}0.572{col 58}{space 4}-.0027855{col 71}{space 3}  .005041
+{txt}{space 13}ROA {c |}{col 18}{res}{space 2} .0095319{col 30}{space 2} .0158944{col 41}{space 1}    0.60{col 50}{space 3}0.549{col 58}{space 4}-.0216206{col 71}{space 3} .0406844
+{txt}{space 8}Leverage {c |}{col 18}{res}{space 2}-.0651676{col 30}{space 2} .0132345{col 41}{space 1}   -4.92{col 50}{space 3}0.000{col 58}{space 4}-.0911067{col 71}{space 3}-.0392285
+{txt}{space 10}CASHAT {c |}{col 18}{res}{space 2}   .05062{col 30}{space 2} .0179307{col 41}{space 1}    2.82{col 50}{space 3}0.005{col 58}{space 4} .0154765{col 71}{space 3} .0857635
+{txt}{space 11}KZidx {c |}{col 18}{res}{space 2}-.0005119{col 30}{space 2} .0002555{col 41}{space 1}   -2.00{col 50}{space 3}0.045{col 58}{space 4}-.0010127{col 71}{space 3}-.0000111
+{txt}{space 9}InstOwn {c |}{col 18}{res}{space 2} .0066914{col 30}{space 2} .0192539{col 41}{space 1}    0.35{col 50}{space 3}0.728{col 58}{space 4}-.0310456{col 71}{space 3} .0444284
+{txt}{space 7}oms_HHidx {c |}{col 18}{res}{space 2} .2619876{col 30}{space 2} .0398326{col 41}{space 1}    6.58{col 50}{space 3}0.000{col 58}{space 4} .1839171{col 71}{space 3} .3400581
+{txt}oms_HHidx_square {c |}{col 18}{res}{space 2} -.227414{col 30}{space 2} .0358549{col 41}{space 1}   -6.34{col 50}{space 3}0.000{col 58}{space 4}-.2976884{col 71}{space 3}-.1571396
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2 78}
+Note: Chi-squared test is a Wald test of the coefficients of the variables of interest jointly equal to zero. Lassos {help j_lasso_inferential:select controls} for model estimation. Type {stata lassoinfo} to see number of selected variables in each lasso.
+{p_end}
+{p 0 6 2 78}
+Note: Lassos are performed {help j_lassocluster:accounting for clusters} in {bf:PERMCO}.
+{p_end}
+
+{com}.         estadd local FirmFE "yes"
+
+{txt}added macro:
+             e(FirmFE) : "{res:yes}"
+
+{com}.     estadd local YearFE "yes"
+
+{txt}added macro:
+             e(YearFE) : "{res:yes}"
+
+{com}.         estimates store DML
+{res}{txt}
+{com}.         
+.         *Output the Post-regulization LASSO linear table as *.csv file 
+.     esttab DML, s(FirmFE YearFE N N_clust k_controls k_controls_sel) noconstant  star(* 0.10 ** 0.05 *** 0.01)  se(3) ar2 b(3) replace title("DML Linear Model Estimates") mtitle("DML"), using "DML_Linear_estimates.csv"      
+{res}{txt}{p 0 4 2}
+(file {bf}
+DML_Linear_estimates.csv{rm}
+not found)
+{p_end}
+(output written to {browse  `"DML_Linear_estimates.csv"'})
+
+{com}.         
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}D:\ReplicateLog_Results\ReplicateLog_DML_Linear.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 7 Feb 2025, 14:33:16
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

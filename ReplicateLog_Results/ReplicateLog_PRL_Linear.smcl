@@ -1,0 +1,101 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}D:\ReplicateLog_Results\ReplicateLog_PRL_Linear.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 7 Feb 2025, 09:46:49
+{txt}
+{com}. 
+. * Table 4:  Post-regulization LASSO linear regression
+.  
+.         * Define variables of interests
+.         local innov_used "lnnpatent"
+{txt}
+{com}.         local rd_used "RDAT"
+{txt}
+{com}.         local ctrl "lnME RD_missing lnAge lnK2L TobinQ ROA Leverage CASHAT KZidx  InstOwn oms_HHidx oms_HHidx_square"
+{txt}
+{com}.         
+.         estimates clear
+{res}{txt}
+{com}. 
+.         poregress `innov_used' `rd_used' `ctrl', controls(i.PERMCO i.fyear) vce(cluster PERMCO) selection(bic, gridminok) rseed(1103)
+{res}
+{txt}Estimating lasso for lnnpatent using BIC
+{res}{txt}Estimating lasso for RDAT using BIC
+{res}{txt}Estimating lasso for lnME using BIC
+{res}{txt}Estimating lasso for RD_missing using BIC
+{res}{txt}Estimating lasso for lnAge using BIC
+{res}{txt}Estimating lasso for lnK2L using BIC
+{res}{txt}Estimating lasso for TobinQ using BIC
+{res}{txt}Estimating lasso for ROA using BIC
+{res}{txt}Estimating lasso for Leverage using BIC
+{res}{txt}Estimating lasso for CASHAT using BIC
+{res}{txt}Estimating lasso for KZidx using BIC
+{res}{txt}Estimating lasso for InstOwn using BIC
+{res}{txt}Estimating lasso for oms_HHidx using BIC
+{res}{txt}Estimating lasso for oms_HHidx_square using BIC
+{res}
+{txt}Partialing-out linear model{col 38}Number of obs{col 67}={col 69}{res}    86,341
+{col 38}{txt}Number of controls{col 67}={col 69}{res}    11,570
+{col 38}{txt}Number of selected controls{col 67}={col 69}{res}     1,241
+{col 38}{txt}Wald chi2({res:13}){col 67}={col 69}{res}    965.18
+{col 38}{txt}Prob > chi2{col 67}={col 69}{res}    0.0000
+
+{txt}{ralign 82:(Std. err. adjusted for {res:11,544} clusters in {res:PERMCO})}
+{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 18}{c |}{col 30}    Robust
+{col 1}       lnnpatent{col 18}{c |} Coefficient{col 30}  std. err.{col 42}      z{col 50}   P>|z|{col 58}     [95% con{col 71}f. interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}RDAT {c |}{col 18}{res}{space 2} .1986367{col 30}{space 2} .0181304{col 41}{space 1}   10.96{col 50}{space 3}0.000{col 58}{space 4} .1631018{col 71}{space 3} .2341716
+{txt}{space 12}lnME {c |}{col 18}{res}{space 2} .0335335{col 30}{space 2}  .003827{col 41}{space 1}    8.76{col 50}{space 3}0.000{col 58}{space 4} .0260328{col 71}{space 3} .0410342
+{txt}{space 6}RD_missing {c |}{col 18}{res}{space 2}-.1505958{col 30}{space 2}  .008657{col 41}{space 1}  -17.40{col 50}{space 3}0.000{col 58}{space 4}-.1675632{col 71}{space 3}-.1336284
+{txt}{space 11}lnAge {c |}{col 18}{res}{space 2} .0555046{col 30}{space 2}  .005905{col 41}{space 1}    9.40{col 50}{space 3}0.000{col 58}{space 4}  .043931{col 71}{space 3} .0670781
+{txt}{space 11}lnK2L {c |}{col 18}{res}{space 2} .0057017{col 30}{space 2} .0025703{col 41}{space 1}    2.22{col 50}{space 3}0.027{col 58}{space 4} .0006641{col 71}{space 3} .0107394
+{txt}{space 10}TobinQ {c |}{col 18}{res}{space 2} .0037628{col 30}{space 2} .0027739{col 41}{space 1}    1.36{col 50}{space 3}0.175{col 58}{space 4} -.001674{col 71}{space 3} .0091996
+{txt}{space 13}ROA {c |}{col 18}{res}{space 2} .0292851{col 30}{space 2}  .021676{col 41}{space 1}    1.35{col 50}{space 3}0.177{col 58}{space 4}-.0131991{col 71}{space 3} .0717693
+{txt}{space 8}Leverage {c |}{col 18}{res}{space 2}-.0545895{col 30}{space 2} .0183714{col 41}{space 1}   -2.97{col 50}{space 3}0.003{col 58}{space 4}-.0905969{col 71}{space 3}-.0185821
+{txt}{space 10}CASHAT {c |}{col 18}{res}{space 2} .0747047{col 30}{space 2} .0238717{col 41}{space 1}    3.13{col 50}{space 3}0.002{col 58}{space 4} .0279169{col 71}{space 3} .1214924
+{txt}{space 11}KZidx {c |}{col 18}{res}{space 2} .0000725{col 30}{space 2} .0003324{col 41}{space 1}    0.22{col 50}{space 3}0.827{col 58}{space 4} -.000579{col 71}{space 3} .0007241
+{txt}{space 9}InstOwn {c |}{col 18}{res}{space 2} .0052065{col 30}{space 2} .0251366{col 41}{space 1}    0.21{col 50}{space 3}0.836{col 58}{space 4}-.0440604{col 71}{space 3} .0544733
+{txt}{space 7}oms_HHidx {c |}{col 18}{res}{space 2} .2885061{col 30}{space 2} .0550278{col 41}{space 1}    5.24{col 50}{space 3}0.000{col 58}{space 4} .1806537{col 71}{space 3} .3963586
+{txt}oms_HHidx_square {c |}{col 18}{res}{space 2}-.2500799{col 30}{space 2} .0492933{col 41}{space 1}   -5.07{col 50}{space 3}0.000{col 58}{space 4}-.3466931{col 71}{space 3}-.1534668
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2 78}
+Note: Chi-squared test is a Wald test of the coefficients of the variables of interest jointly equal to zero. Lassos {help j_lasso_inferential:select controls} for model estimation. Type {stata lassoinfo} to see number of selected variables in each lasso.
+{p_end}
+{p 0 6 2 78}
+Note: Lassos are performed {help j_lassocluster:accounting for clusters} in {bf:PERMCO}.
+{p_end}
+
+{com}.         estadd local FirmFE "yes"
+
+{txt}added macro:
+             e(FirmFE) : "{res:yes}"
+
+{com}.     estadd local YearFE "yes"
+
+{txt}added macro:
+             e(YearFE) : "{res:yes}"
+
+{com}.         estimates store PRL
+{res}{txt}
+{com}.         
+.                 *Output the Post-regulization LASSO linear table as *.csv file 
+.     esttab PRL, s(FirmFE YearFE N N_clust k_controls k_controls_sel) noconstant star(* 0.10 ** 0.05 *** 0.01)  se(3) ar2 b(3) replace title("PRL Linear Model Estimates") mtitle("PRL"), using "PRL_Linear_estimates.csv"       
+{res}{txt}{p 0 4 2}
+(file {bf}
+PRL_Linear_estimates.csv{rm}
+not found)
+{p_end}
+(output written to {browse  `"PRL_Linear_estimates.csv"'})
+
+{com}. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}D:\ReplicateLog_Results\ReplicateLog_PRL_Linear.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 7 Feb 2025, 10:56:50
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
