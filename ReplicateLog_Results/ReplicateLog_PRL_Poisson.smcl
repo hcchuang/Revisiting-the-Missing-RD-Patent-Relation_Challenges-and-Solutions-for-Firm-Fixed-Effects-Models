@@ -1,9 +1,9 @@
 {smcl}
-{txt}{sf}{ul off}{.-}
+{com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
        {txt}log:  {res}E:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\ReplicateLog_PRL_Poisson_seed1234_cv10.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 5 Feb 2025, 13:19:54
+ {txt}opened on:  {res} 6 Feb 2025, 22:34:25
 {txt}
 {com}. 
 .         * Define variables of interests
@@ -13,18 +13,18 @@
 {txt}
 {com}.         local rd_used "RDAT"
 {txt}
-{com}.         local ctrl "lnME RD_missing lnAge lnK2L TobinQ ROA Leverage CASHAT KZidx  InstOwn oms_HHidx oms_HHidx_square"
+{com}.         local ctrl "lnME lnAge lnK2L RD_missing TobinQ ROA Leverage CASHAT KZidx  InstOwn oms_HHidx oms_HHidx_square"
 {txt}
-{com}. 
+{com}.         
 .         * Post-regulization Poisson regression
 .         popoisson `innov_used' `rd_used' `ctrl', controls(i.PERMCO i.fyear)  lasso(`innov_used', selection(cv, fold(10) gridminok)) vce(cluster PERMCO) coef rseed(1234)
 {res}
 {txt}Estimating lasso for npatent using cv
 {res}{txt}Estimating lasso for RDAT using plugin
 {res}{txt}Estimating lasso for lnME using plugin
-{res}{txt}Estimating lasso for RD_missing using plugin
 {res}{txt}Estimating lasso for lnAge using plugin
 {res}{txt}Estimating lasso for lnK2L using plugin
+{res}{txt}Estimating lasso for RD_missing using plugin
 {res}{txt}Estimating lasso for TobinQ using plugin
 {res}{txt}Estimating lasso for ROA using plugin
 {res}{txt}Estimating lasso for Leverage using plugin
@@ -36,8 +36,8 @@
 {res}
 {txt}Partialing-out Poisson model{col 38}Number of obs{col 67}={col 69}{res}    86,341
 {col 38}{txt}Number of controls{col 67}={col 69}{res}    11,570
-{col 38}{txt}Number of selected controls{col 67}={col 69}{res}     1,223
-{col 38}{txt}Wald chi2({res:13}){col 67}={col 69}{res}   3110.14
+{col 38}{txt}Number of selected controls{col 67}={col 69}{res}     1,218
+{col 38}{txt}Wald chi2({res:13}){col 67}={col 69}{res}   3200.69
 {col 38}{txt}Prob > chi2{col 67}={col 69}{res}    0.0000
 
 {txt}{ralign 82:(Std. err. adjusted for {res:11,544} clusters in {res:PERMCO})}
@@ -45,19 +45,19 @@
 {col 18}{c |}{col 30}    Robust
 {col 1}         npatent{col 18}{c |} Coefficient{col 30}  std. err.{col 42}      z{col 50}   P>|z|{col 58}     [95% con{col 71}f. interval]
 {hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 12}RDAT {c |}{col 18}{res}{space 2}  2.41296{col 30}{space 2} .1606157{col 41}{space 1}   15.02{col 50}{space 3}0.000{col 58}{space 4} 2.098159{col 71}{space 3} 2.727761
-{txt}{space 12}lnME {c |}{col 18}{res}{space 2} .9383914{col 30}{space 2} .0794147{col 41}{space 1}   11.82{col 50}{space 3}0.000{col 58}{space 4} .7827415{col 71}{space 3} 1.094041
-{txt}{space 6}RD_missing {c |}{col 18}{res}{space 2}-2.099931{col 30}{space 2} .2495311{col 41}{space 1}   -8.42{col 50}{space 3}0.000{col 58}{space 4}-2.589003{col 71}{space 3}-1.610859
-{txt}{space 11}lnAge {c |}{col 18}{res}{space 2} .4675512{col 30}{space 2}  .179357{col 41}{space 1}    2.61{col 50}{space 3}0.009{col 58}{space 4}  .116018{col 71}{space 3} .8190844
-{txt}{space 11}lnK2L {c |}{col 18}{res}{space 2} .0604625{col 30}{space 2}  .042565{col 41}{space 1}    1.42{col 50}{space 3}0.155{col 58}{space 4}-.0229633{col 71}{space 3} .1438883
-{txt}{space 10}TobinQ {c |}{col 18}{res}{space 2}-.1610996{col 30}{space 2} .0299009{col 41}{space 1}   -5.39{col 50}{space 3}0.000{col 58}{space 4}-.2197043{col 71}{space 3}-.1024949
-{txt}{space 13}ROA {c |}{col 18}{res}{space 2} 1.087074{col 30}{space 2} .3536137{col 41}{space 1}    3.07{col 50}{space 3}0.002{col 58}{space 4} .3940043{col 71}{space 3} 1.780145
-{txt}{space 8}Leverage {c |}{col 18}{res}{space 2} .6434534{col 30}{space 2} .4106429{col 41}{space 1}    1.57{col 50}{space 3}0.117{col 58}{space 4}-.1613919{col 71}{space 3} 1.448299
-{txt}{space 10}CASHAT {c |}{col 18}{res}{space 2} .3214203{col 30}{space 2} .4731031{col 41}{space 1}    0.68{col 50}{space 3}0.497{col 58}{space 4}-.6058448{col 71}{space 3} 1.248685
-{txt}{space 11}KZidx {c |}{col 18}{res}{space 2} .0146311{col 30}{space 2} .0106685{col 41}{space 1}    1.37{col 50}{space 3}0.170{col 58}{space 4}-.0062789{col 71}{space 3}  .035541
-{txt}{space 9}InstOwn {c |}{col 18}{res}{space 2}-.9071988{col 30}{space 2} .2829072{col 41}{space 1}   -3.21{col 50}{space 3}0.001{col 58}{space 4}-1.461687{col 71}{space 3}-.3527108
-{txt}{space 7}oms_HHidx {c |}{col 18}{res}{space 2} 1.420994{col 30}{space 2} 1.343766{col 41}{space 1}    1.06{col 50}{space 3}0.290{col 58}{space 4} -1.21274{col 71}{space 3} 4.054727
-{txt}oms_HHidx_square {c |}{col 18}{res}{space 2}-1.583605{col 30}{space 2} 1.180177{col 41}{space 1}   -1.34{col 50}{space 3}0.180{col 58}{space 4}-3.896709{col 71}{space 3} .7294994
+{space 12}RDAT {c |}{col 18}{res}{space 2} 2.407393{col 30}{space 2} .1614605{col 41}{space 1}   14.91{col 50}{space 3}0.000{col 58}{space 4} 2.090936{col 71}{space 3}  2.72385
+{txt}{space 12}lnME {c |}{col 18}{res}{space 2} .9371589{col 30}{space 2} .0811113{col 41}{space 1}   11.55{col 50}{space 3}0.000{col 58}{space 4} .7781836{col 71}{space 3} 1.096134
+{txt}{space 11}lnAge {c |}{col 18}{res}{space 2} .4692823{col 30}{space 2} .1816555{col 41}{space 1}    2.58{col 50}{space 3}0.010{col 58}{space 4}  .113244{col 71}{space 3} .8253206
+{txt}{space 11}lnK2L {c |}{col 18}{res}{space 2} .0622991{col 30}{space 2} .0439573{col 41}{space 1}    1.42{col 50}{space 3}0.156{col 58}{space 4}-.0238556{col 71}{space 3} .1484537
+{txt}{space 6}RD_missing {c |}{col 18}{res}{space 2}-2.099297{col 30}{space 2} .2514043{col 41}{space 1}   -8.35{col 50}{space 3}0.000{col 58}{space 4} -2.59204{col 71}{space 3}-1.606554
+{txt}{space 10}TobinQ {c |}{col 18}{res}{space 2}-.1610989{col 30}{space 2} .0300995{col 41}{space 1}   -5.35{col 50}{space 3}0.000{col 58}{space 4}-.2200928{col 71}{space 3} -.102105
+{txt}{space 13}ROA {c |}{col 18}{res}{space 2}  1.07253{col 30}{space 2} .3575191{col 41}{space 1}    3.00{col 50}{space 3}0.003{col 58}{space 4} .3718058{col 71}{space 3} 1.773255
+{txt}{space 8}Leverage {c |}{col 18}{res}{space 2} .5950268{col 30}{space 2} .4330193{col 41}{space 1}    1.37{col 50}{space 3}0.169{col 58}{space 4}-.2536753{col 71}{space 3} 1.443729
+{txt}{space 10}CASHAT {c |}{col 18}{res}{space 2} .3050244{col 30}{space 2} .4857407{col 41}{space 1}    0.63{col 50}{space 3}0.530{col 58}{space 4}-.6470099{col 71}{space 3} 1.257059
+{txt}{space 11}KZidx {c |}{col 18}{res}{space 2} .0147062{col 30}{space 2} .0107622{col 41}{space 1}    1.37{col 50}{space 3}0.172{col 58}{space 4}-.0063874{col 71}{space 3} .0357997
+{txt}{space 9}InstOwn {c |}{col 18}{res}{space 2}  -.90451{col 30}{space 2} .2866168{col 41}{space 1}   -3.16{col 50}{space 3}0.002{col 58}{space 4}-1.466269{col 71}{space 3}-.3427514
+{txt}{space 7}oms_HHidx {c |}{col 18}{res}{space 2} 1.419991{col 30}{space 2} 1.355238{col 41}{space 1}    1.05{col 50}{space 3}0.295{col 58}{space 4}-1.236227{col 71}{space 3} 4.076209
+{txt}oms_HHidx_square {c |}{col 18}{res}{space 2}-1.582114{col 30}{space 2} 1.190383{col 41}{space 1}   -1.33{col 50}{space 3}0.184{col 58}{space 4}-3.915222{col 71}{space 3} .7509935
 {txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {p 0 6 2 78}
 Note: Chi-squared test is a Wald test of the coefficients of the variables of interest jointly equal to zero. Lassos {help j_lasso_inferential:select controls} for model estimation. Type {stata lassoinfo} to see number of selected variables in each lasso.
@@ -81,20 +81,23 @@ Note: Lassos are performed {help j_lassocluster:accounting for clusters} in {bf:
 {res}{txt}
 {com}.         
 .         *Output the Post-regulization LASSO Poisson table as *.csv file 
-.     esttab popoi_fmyr, s(FirmFE YearFE N N_clust k_controls k_controls_sel) noconstant star(* 0.10 ** 0.05 *** 0.01)  se(3) ar2 b(3) replace title("RD-Patent PRL Poisson Model Estimates") mtitle("PRL_Poisson_fmyr"), using "E:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\RDPatentFE_PRL_Poisson_estimates_seed1234_cv10.csv"  
+.     esttab popoi_fmyr, s(FirmFE YearFE N N_clust k_controls k_controls_sel) noconstant star(* 0.10 ** 0.05 *** 0.01)  se(3) ar2 b(3) replace title("RD-Patent PRL Poisson Model Estimates") mtitle("PRL_Poisson_fmyr"), using "D:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\RDPatentFE_PRL_Poisson_estimates_seed1234_cv10.csv"  
 {res}{txt}{p 0 4 2}
 (file {bf}
-E:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\RDPatentFE_PRL_Poisson_estimates_seed1234_cv10.csv{rm}
+D:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\RDPatentFE_PRL_Poisson_estimates_seed1234_cv10.csv{rm}
 not found)
 {p_end}
-(output written to {browse  `"E:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\RDPatentFE_PRL_Poisson_estimates_seed1234_cv10.csv"'})
+{err}{p 0 4 2}
+file {bf:{err}D:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\RDPatentFE_PRL_Poisson_estimates_seed1234_cv10.csv}
+could not be opened
+{p_end}
+{txt}{search r(603), local:r(603);}
 
-{com}. 
-. log close
-      {txt}name:  {res}<unnamed>
-       {txt}log:  {res}E:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\ReplicateLog_PRL_Poisson_seed1234_cv10.smcl
-  {txt}log type:  {res}smcl
- {txt}closed on:  {res} 5 Feb 2025, 16:22:44
-{txt}{.-}
-{smcl}
-{txt}{sf}{ul off}
+end of do-file
+
+{search r(603), local:r(603);}
+
+{com}.  esttab popoi_fmyr, s(FirmFE YearFE N N_clust k_controls k_controls_sel) noconstant star(* 0.10 ** 0.05 *** 0.01)  se(3) ar2 b(3) replace title("RD-Patent PRL Poisson Model Estimates") mtitle("PRL_Poisson_fmyr"), using "E:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\RDPatentFE_PRL_Poisson_estimates_seed1234_cv10.csv"
+{res}{txt}(output written to {browse  `"E:\Dropbox\RD_PATENT_FE\stata_github\MissingRDPatent_ML_git\RDPatentFE_PRL_Poisson_estimates_seed1234_cv10.csv"'})
+
+{com}. exit, clear
