@@ -1,4 +1,4 @@
-# Revisiting the Missing R\&D-Patent Relation: Challenges and Solutions for Firm Fixed Effects Models
+# Revisiting the Missing R&D-Patent Relation: Challenges and Solutions for Firm Fixed Effects Models
 The repository provides the detailed examples and codes following the paper Chuang, H.C., Hsu, P.H., Kuan, C.M., Yang, J.C., 2025. *Revisiting the Missing R\&D-Patent Relation: Challenges and Solutions for Firm Fixed Effects Models*. The paper is available at SSRN. https://ssrn.com/abstract=4636846
 
 In this set of code, we demonstrate how users can implement the following four ways to identify the potential bias from fixed effects regressions: 
@@ -64,11 +64,11 @@ Please contact Po-Hsuan Hsu (pohsuanhsu@mx.nthu.edu.tw) or Hui-Ching Chuang (hui
 
 ## Citation
 ```
-Chuang, Hui-Ching and Hsu, Po-Hsuan and Kuan, Chung‐Ming and Yang, Jui-Chung, Revisiting the Missing R\&D-Patent Relation: Challenges and Solutions for Firm Fixed Effects Models (2025). Available at SSRN: https://ssrn.com/abstract=4636846 or http://dx.doi.org/10.2139/ssrn.4636846
+Chuang, Hui-Ching and Hsu, Po-Hsuan and Kuan, Chung‐Ming and Yang, Jui-Chung, Revisiting the Missing R&D-Patent Relation: Challenges and Solutions for Firm Fixed Effects Models (2025). Available at SSRN: https://ssrn.com/abstract=4636846 or http://dx.doi.org/10.2139/ssrn.4636846
 ```
 ```
 @article{chuang2022reexam, 
-         title={Revisiting the Missing R\&D-Patent Relation: Challenges and Solutions for Firm Fixed Effects Models},
+         title={Revisiting the Missing R&D-Patent Relation: Challenges and Solutions for Firm Fixed Effects Models},
          author={Chuang, Hui-Ching and Hsu, Po-Hsuan and Kuan, Chung-Ming and Yang, Jui-Chung},
          journal={Available at SSRN. https://ssrn.com/abstract=4636846},
          year={2022}
