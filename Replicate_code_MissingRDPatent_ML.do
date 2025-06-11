@@ -39,46 +39,12 @@ sort PERMCO fyear
 xtset PERMCO fyear
 
 
-*--------------------------------------------------------------------------------------------------
-
-* Table: R squares and Within R square
-
-	* Define variables of interests (please change accordingly)
-	local innov_used "lnnpatent"
-	local rd_used "RDAT"
-	local ctrl "lnME RD_missing lnAge lnK2L TobinQ ROA Leverage CASHAT KZidx  InstOwn oms_HHidx oms_HHidx_square"
-
-	
-    reg `innov_used' `rd_used' `ctrl' i.fyear, vce(cluster PERMCO)
-    estimates store ols_year
-    estadd scalar r2_a = e(r2_a), replace
-    
-    reghdfe `innov_used' `rd_used' `ctrl', absorb(PERMCO fyear) vce(cluster PERMCO)
-    estimates store reghdfe_fmyr
-    estadd scalar r2_a        = e(r2_a), replace
-    estadd scalar r2_within   = e(r2_within)  , replace 
-    estadd scalar r2_a_within = e(r2_a_within) , replace 
-		
-	esttab ols_year reghdfe_fmyr,                             ///
-            se(3)  star(* 0.10 ** 0.05 *** 0.01)  b(3)              ///
-            stats(r2 r2_a r2_within r2_a_within N,               ///
-                  fmt(%9.3f)                                   ///
-                  labels("Rsqr"                           ///
-                         "Adj. Rsqr"                     ///
-                         "Within Rsqr"                         ///
-                         "Within Adj. Rsqr"  ///
-						 "Observations"))  replace                     ///
-            title("R square and Within_R_square") ///
-            mtitle("OLS" "FE")  , ///
-            using "Rquare_WithinRsquare.csv"
-
-			
 	 
 *--------------------------------------------------------------------------------------------------
 
 log using "ReplicateLog_OLS_FE_adjHT.smcl", replace
 
-* Table 4: OLS and Fixed effect estimation 
+* Table: OLS and Fixed effect estimation 
 
 	* Define variables of interests (please change accordingly)
 	local innov_used "lnnpatent"
@@ -122,12 +88,46 @@ log close
 
 
 
+*--------------------------------------------------------------------------------------------------
+
+* Table: R squares and Within R square
+
+	* Define variables of interests (please change accordingly)
+	local innov_used "lnnpatent"
+	local rd_used "RDAT"
+	local ctrl "lnME RD_missing lnAge lnK2L TobinQ ROA Leverage CASHAT KZidx  InstOwn oms_HHidx oms_HHidx_square"
+
+	
+    reg `innov_used' `rd_used' `ctrl' i.fyear, vce(cluster PERMCO)
+    estimates store ols_year
+    estadd scalar r2_a = e(r2_a), replace
+    
+    reghdfe `innov_used' `rd_used' `ctrl', absorb(PERMCO fyear) vce(cluster PERMCO)
+    estimates store reghdfe_fmyr
+    estadd scalar r2_a        = e(r2_a), replace
+    estadd scalar r2_within   = e(r2_within)  , replace 
+    estadd scalar r2_a_within = e(r2_a_within) , replace 
+		
+	esttab ols_year reghdfe_fmyr,                             ///
+            se(3)  star(* 0.10 ** 0.05 *** 0.01)  b(3)              ///
+            stats(r2 r2_a r2_within r2_a_within N,               ///
+                  fmt(%9.3f)                                   ///
+                  labels("Rsqr"                           ///
+                         "Adj. Rsqr"                     ///
+                         "Within Rsqr"                         ///
+                         "Within Adj. Rsqr"  ///
+						 "Observations"))  replace                     ///
+            title("R square and Within_R_square") ///
+            mtitle("OLS" "FE")  , ///
+            using "Rquare_WithinRsquare.csv"
+
+			
 			
 *--------------------------------------------------------------------------------------------------
 
 log using "ReplicateLog_PRL_Linear.smcl", replace
 
-* Table 4:  Post-regulization LASSO linear regression
+* Table:  Post-regulization LASSO linear regression
  
 	* Define variables of interests
 	local innov_used "lnnpatent"
@@ -152,7 +152,7 @@ log close
 
 log using "ReplicateLog_DML_Linear.smcl", replace
 
-* Table 4:  Double Machine Learning 
+* Table:  Double Machine Learning 
 
 	* Define variables of interests
 	local innov_used "lnnpatent"
@@ -180,7 +180,7 @@ log close
 
 log using "ReplicateLog_Poisson_FE.smcl", replace
 
-* Table 6: Poisson regression and Fixed effect estimation 
+* Table: Poisson regression and Fixed effect estimation 
 	
 	* Define variables of interests
 	estimates clear
@@ -210,7 +210,7 @@ log close
 
 log using "ReplicateLog_PRL_Poisson.smcl", replace
 
-* Table 6: Post-regulization Poisson regression
+* Table: Post-regulization Poisson regression
 
 	* Define variables of interests
 	estimates clear
@@ -235,7 +235,7 @@ log close
 
 log using "ReplicateLog_DML_Poisson.smcl", replace
 
-* Table 6: Double machine Poisson regression
+* Table: Double machine Poisson regression
 
 	* Define variables of interests
 	estimates clear
