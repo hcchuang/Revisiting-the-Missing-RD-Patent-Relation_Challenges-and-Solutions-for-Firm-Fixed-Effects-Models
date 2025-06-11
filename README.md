@@ -2,9 +2,9 @@
 The repository provides the detailed examples and codes following the paper Chuang, H.C., Hsu, P.H., Kuan, C.M., Yang, J.C., 2025. *Revisiting the Missing R\&D-Patent Relation: Challenges and Solutions for Firm Fixed Effects Models*. The paper is available at SSRN. https://ssrn.com/abstract=4636846
 
 In this set of code, we demonstrate how users can implement the following four ways to identify the potential bias from fixed effects regressions: 
-  1. Within Between Variation: check if within-firm variation dominates between-firm variation or vice versa 
-  2. Linear regression and Poisson regression with and without firm FEs
-  3. Adjusted Hausman-Taylor approach
+  1. Linear regression and Poisson regression with and without firm FEs
+  2. Within and Overall R squares: check if R square significantly dominates within R square 
+  2. Adjusted Hausman-Taylor approach
   4. Post-regularization LASSO (PRL) and Double Machine Learning (DML) methods for both linear and Poisson regression
 
 ## Data and Code Availability:
@@ -35,7 +35,7 @@ We have prepared the following documents:
 **Results for Sample Data**
 * Depends on computer capacity; we also provide results and corresponding STATA log files.
   * Log files:
-    - ReplicateLog_Within_Between_Variation 
+    - ReplicateLog_Within_R_square 
     - ReplicateLog_OLS_FE_adjHT
     - ReplicateLog_PRL_Linear
     - ReplicateLog_DML_Linear
