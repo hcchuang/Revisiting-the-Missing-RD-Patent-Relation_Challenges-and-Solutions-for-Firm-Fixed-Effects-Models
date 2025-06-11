@@ -35,7 +35,6 @@ We have prepared the following documents:
 **Results for Sample Data**
 * Depends on computer capacity; we also provide results and corresponding STATA log files.
   * Log files:
-    - ReplicateLog_Within_R_square 
     - ReplicateLog_OLS_FE_adjHT
     - ReplicateLog_PRL_Linear
     - ReplicateLog_DML_Linear
