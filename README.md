@@ -3,7 +3,7 @@ The repository provides the detailed examples and codes following the paper Chua
 
 In this set of code, we demonstrate how users can implement the following four ways to identify the potential bias from fixed effects regressions: 
   1. Linear regression and Poisson regression with and without firm FEs
-  2. Within and Overall R squares: check if R square significantly dominates within R square 
+  2. Within and Overall R squares
   2. Adjusted Hausman-Taylor approach
   4. Post-regularization LASSO (PRL) and Double Machine Learning (DML) methods for both linear and Poisson regression
 
