@@ -17,14 +17,13 @@
 * Please contact Po-Hsuan Hsu (pohsuanhsu@mx.nthu.edu.tw) or Hui-Ching Chuang (huichingc@gmail.com) 
 * for any questions regarding the data.
 *
-* Version: 2025/06/12
+* Version: 2025/07/12
 *
 *--------------------------------------------------------------------------------------------------
 
 ********************************************************************************************************************
 * Linear model: POLS, HDFE, Post-regularization LASSO regression and double machine learning LASSO regression 
 ********************************************************************************************************************
-
 
 cd "D:\ReplicateLog_Results"
 
@@ -64,7 +63,7 @@ log using "ReplicateLog_OLS_FE_adjHT.smcl", replace
 	estimates clear
 	
 	* Fixed Effect on firm and year
-	reghdfe `innov_used' `rd_used' `ctrl' , absorb(i.PERMCO i.fyear) vce(cluster PERMCO)
+	reghdfe `innov_used' `rd_used' `ctrl' i.fyear, absorb(PERMCO) vce(cluster PERMCO)
 	estadd local FirmFE "yes",replace
     estadd local YearFE "yes",replace
     estimates store FE
@@ -101,25 +100,32 @@ log close
     reg `innov_used' `rd_used' `ctrl' i.fyear, vce(cluster PERMCO)
     estimates store ols_year
     estadd scalar r2_a = e(r2_a), replace
+        
     
-    reghdfe `innov_used' `rd_used' `ctrl', absorb(PERMCO fyear) vce(cluster PERMCO)
+    reghdfe `innov_used' `rd_used' `ctrl'  i.fyear, absorb(PERMCO) vce(cluster PERMCO)
     estimates store reghdfe_fmyr
     estadd scalar r2_a        = e(r2_a), replace
     estadd scalar r2_within   = e(r2_within)  , replace 
     estadd scalar r2_a_within = e(r2_a_within) , replace 
-		
+        
+	* Calc. Between R2 using "betweenr2.ado" file
+	betweenr2                        // prints Between R²
+	estadd scalar r2_between = r(r2_between)
+	
 	esttab ols_year reghdfe_fmyr,                             ///
-            se(3)  star(* 0.10 ** 0.05 *** 0.01)  b(3)              ///
-            stats(r2 r2_a r2_within r2_a_within N,               ///
-                  fmt(%9.3f)                                   ///
-                  labels("Rsqr"                           ///
-                         "Adj. Rsqr"                     ///
-                         "Within Rsqr"                         ///
-                         "Within Adj. Rsqr"  ///
-						 "Observations"))  replace                     ///
-            title("R square and Within_R_square") ///
-            mtitle("OLS" "FE")  , ///
-            using "Rquare_WithinRsquare.csv"
+			se(3) star(* 0.10 ** 0.05 *** 0.01) b(3) ///
+			stats(r2 r2_a r2_within r2_a_within r2_between N, ///
+				  fmt(%9.3f) ///
+				  labels("Rsqr" ///
+					 "Adj. Rsqr" ///
+					 "Within Rsqr" ///
+					 "Within Adj. Rsqr" ///
+					 "Between Rsqr" ///
+					 "Observations")) replace ///
+			title("Overall_Between_and_Within_R_square") ///
+			mtitle("OLS" "FE"), ///
+			using "Overall_Between_WithinRsquare.csv"	
+	
 
 			
 			
