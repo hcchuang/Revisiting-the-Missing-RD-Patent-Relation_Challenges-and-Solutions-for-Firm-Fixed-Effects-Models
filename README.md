@@ -11,7 +11,7 @@ In this set of code, we demonstrate how users can implement the following four w
 We have prepared the following documents:
   1. `Replicate_code_MissingRDPatent_ML.do` contains the STATA code that produces our main results in the paper;
   2. `Replicate_data_MissingRDPatent_ML.dta` contains the dataset used in the paper.
-  3. `betweenr2.ado' calculates between R2 affter estimating a model with reghdfe.
+  3. `betweenr2.ado` calculates between R squared after estimating a model with `reghdfe`.
  
 **Sample Data Construction**
 * PERMCO here is a masked firm identifier.
@@ -57,7 +57,7 @@ We have prepared the following documents:
   The cluster standard error for those methods are only available since STATA 17. 
   The robust standard error can still be used for those methods in STATA 16.
 - The following commands may need to be installed and updated on STATA to run the replicate code: `reghdfe`, `ppmlhdfe`, and `esttab`.
-- To export the $R^{2}$ values correctly to a CSV file, copy betweenr2.ado to `C:\Users\yourPC\ado\personal\' folder, and then update esttab by running `ssc install estout, replace` command in STATA.
+- To export the R squared values correctly to a CSV file, copy `betweenr2.ado` to `C:\Users\yourPC\ado\personal\' folder, and then update esttab by running `ssc install estout, replace` command in STATA.
     
 ## Contact
 Please contact Po-Hsuan Hsu (pohsuanhsu@mx.nthu.edu.tw) or Hui-Ching Chuang (huichingc@gmail.com) for any questions regarding the data.
