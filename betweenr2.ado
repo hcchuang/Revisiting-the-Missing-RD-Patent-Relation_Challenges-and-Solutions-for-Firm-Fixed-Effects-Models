@@ -16,7 +16,8 @@ program define betweenr2, rclass
              that excludes absorbed fixed effects; 2) collapse Y and
              that prediction to group means; 3) square their
              correlation.
-
+      * Version: 2025/07/12
+      * Hui-Ching Chuang
       ------------------------------------------------------------*/
 
     /* 1. Ensure last estimates come from reghdfe */
