@@ -3,7 +3,7 @@ The repository provides the detailed examples and codes following the paper Chua
 
 In this set of code, we demonstrate how users can implement the following four ways to identify the potential bias from fixed effects regressions: 
   1. Linear regression and Poisson regression with and without firm FEs
-  2. Within and Overall R squares
+  2. Within, Between, and Overall R squared
   2. Adjusted Hausman-Taylor approach
   4. Post-regularization LASSO (PRL) and Double Machine Learning (DML) methods for both linear and Poisson regression
 
@@ -57,7 +57,7 @@ We have prepared the following documents:
   The cluster standard error for those methods are only available since STATA 17. 
   The robust standard error can still be used for those methods in STATA 16.
 - The following commands may need to be installed and updated on STATA to run the replicate code: `reghdfe`, `ppmlhdfe`, and `esttab`.
-- To export the $R^{2}$ values correctly to a CSV file, copy betweenr2.ado to C:\Users\yourPC\ado\personal\, and then update esttab by running `ssc install estout, replace` command in STATA.
+- To export the $R^{2}$ values correctly to a CSV file, copy betweenr2.ado to `C:\Users\yourPC\ado\personal\' folder, and then update esttab by running `ssc install estout, replace` command in STATA.
     
 ## Contact
 Please contact Po-Hsuan Hsu (pohsuanhsu@mx.nthu.edu.tw) or Hui-Ching Chuang (huichingc@gmail.com) for any questions regarding the data.
