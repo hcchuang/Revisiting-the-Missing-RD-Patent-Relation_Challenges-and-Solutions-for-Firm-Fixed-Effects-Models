@@ -11,7 +11,7 @@ In this set of code, we demonstrate how users can implement the following four w
 We have prepared the following documents:
   1. `Replicate_code_MissingRDPatent_ML.do` contains the STATA code that produces our main results in the paper;
   2. `Replicate_data_MissingRDPatent_ML.dta` contains the dataset used in the paper.
-  3. `betweenr2.ado` calculates between R squared after estimating a model with `reghdfe`.
+  3. `panelr2.ado` calculates overall, between, and within R squared after estimation.
  
 **Sample Data Construction**
 * PERMCO here is a masked firm identifier.
