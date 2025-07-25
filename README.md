@@ -57,7 +57,7 @@ We have prepared the following documents:
   The cluster standard error for those methods are only available since STATA 17. 
   The robust standard error can still be used for those methods in STATA 16.
 - The following commands may need to be installed and updated on STATA to run the replicate code: `reghdfe`, `ppmlhdfe`, and `esttab`.
-- To export the R squared values correctly to a CSV file, copy `betweenr2.ado` to `C:\Users\yourPC\ado\personal\` folder, and then update esttab by running `ssc install estout, replace` command in STATA.
+- To export the R squared values correctly to a CSV file, copy `panelr2.ado` to `C:\Users\yourPC\ado\personal\` folder, and then update esttab by running `ssc install estout, replace` command in STATA.
     
 ## Contact
 Please contact Po-Hsuan Hsu (pohsuanhsu@mx.nthu.edu.tw) or Hui-Ching Chuang (huichingc@gmail.com) for any questions regarding the data.
