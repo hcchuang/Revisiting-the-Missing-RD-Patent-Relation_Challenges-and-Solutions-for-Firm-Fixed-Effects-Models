@@ -114,7 +114,7 @@ log close
     estadd scalar r2_within   = e(r2_within)  , replace 
     estadd scalar r2_a_within = e(r2_a_within) , replace 
         
-    * Calc. Between R2 using "betweenr2.ado" file
+    * Calc. between & within R2 using "panelr2.ado" file
     panelr2, id(PERMCO)
     estadd scalar r2_between = r(between)
     estadd scalar r2_overall = r(overall)
