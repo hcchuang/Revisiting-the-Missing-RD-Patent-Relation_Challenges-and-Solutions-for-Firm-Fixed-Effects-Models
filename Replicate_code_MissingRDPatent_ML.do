@@ -88,46 +88,53 @@ log close
 
 
 *--------------------------------------------------------------------------------------------------
-
 * Table: R squares and Within R square
 
-	* Define variables of interests (please change accordingly)
-	local innov_used "lnnpatent"
-	local rd_used "RDAT"
-	local ctrl "lnME RD_missing lnAge lnK2L TobinQ ROA Leverage CASHAT KZidx  InstOwn oms_HHidx oms_HHidx_square"
+   * Define variables of interests (please change accordingly)
+   local innov_used "lnnpatent"
+   local rd_used "RDAT"
+   local ctrl "lnME RD_missing lnAge lnK2L TobinQ ROA Leverage CASHAT KZidx  InstOwn oms_HHidx oms_HHidx_square"
 
 	
+    * OLS without firm dummies ------------------------------------
     reg `innov_used' `rd_used' `ctrl' i.fyear, vce(cluster PERMCO)
     estimates store ols_year
     estadd scalar r2_a = e(r2_a), replace
-        
-    
+   	
+   *Calc. between & within R2 using "panelr2.ado" file
+    panelr2, id(PERMCO)
+    estadd scalar r2_between = r(between)
+    estadd scalar r2_within = r(within)
+	
+	
+   * reghdfe ----------------------------------------------------
     reghdfe `innov_used' `rd_used' `ctrl'  i.fyear, absorb(PERMCO) vce(cluster PERMCO)
     estimates store reghdfe_fmyr
     estadd scalar r2_a        = e(r2_a), replace
     estadd scalar r2_within   = e(r2_within)  , replace 
     estadd scalar r2_a_within = e(r2_a_within) , replace 
         
-	* Calc. Between R2 using "betweenr2.ado" file
-	betweenr2                        // prints Between R²
-	estadd scalar r2_between = r(r2_between)
+    * Calc. Between R2 using "betweenr2.ado" file
+    panelr2, id(PERMCO)
+    estadd scalar r2_between = r(between)
+    estadd scalar r2_overall = r(overall)
 	
-	esttab ols_year reghdfe_fmyr,                             ///
-			se(3) star(* 0.10 ** 0.05 *** 0.01) b(3) ///
-			stats(r2 r2_a r2_within r2_a_within r2_between N, ///
-				  fmt(%9.3f) ///
-				  labels("Rsqr" ///
+    esttab ols_year reghdfe_fmyr,                             ///
+		se(3) star(* 0.10 ** 0.05 *** 0.01) b(3) ///
+		stats(r2 r2_a r2_within r2_a_within r2_between r2_overall N, ///
+			  fmt(%9.4f) ///
+			  labels("Rsqr" ///
 					 "Adj. Rsqr" ///
 					 "Within Rsqr" ///
 					 "Within Adj. Rsqr" ///
 					 "Between Rsqr" ///
+					 "Overall Rsqr" ///
 					 "Observations")) replace ///
-			title("Overall_Between_and_Within_R_square") ///
-			mtitle("OLS" "FE"), ///
-			using "Overall_Between_WithinRsquare.csv"	
-	
+		title("Overall_Between_and_Within_R_square") ///
+		mtitle("OLS" "FE"), ///
+		using "Overall_Between_WithinRsquare.csv"	
 
-			
+		
 			
 *--------------------------------------------------------------------------------------------------
 
